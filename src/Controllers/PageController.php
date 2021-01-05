@@ -16,9 +16,8 @@ class PageController extends GeneralController
         //$movieModel = new MovieModel();
         //$movies = $movieModel->getAllMovies();
 
-        //$template = $this->twig->load('Page/index.html.twig');
-        //echo $template->render(["movies" => $movies]);
-        echo "index";
+        $template = $this->twig->load('index.html.twig');
+        echo $template->render();
     }
 
     public function error404()
@@ -28,4 +27,18 @@ class PageController extends GeneralController
         echo $template->render();*/
         echo "404";
     }
+
+    public function register()
+    {
+        $template = $this->twig->load('register.html.twig');
+        echo $template->render();
+
+
+
+
+    }
+
+    
+
+    
 }
