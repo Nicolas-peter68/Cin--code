@@ -18,7 +18,6 @@ class PageController extends GeneralController
 
         $template = $this->twig->load('index.html.twig');
         echo $template->render();
-        //echo "index";
     }
 
     public function register()
@@ -38,4 +37,15 @@ class PageController extends GeneralController
         echo $template->render();*/
         echo "404";
     }
+
+    public function register()
+    {
+        $template = $this->twig->load('register.html.twig');
+        echo $template->render();
+
+
+
+
+    }
+
 }
