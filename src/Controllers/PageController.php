@@ -13,12 +13,12 @@ class PageController extends GeneralController
 
     public function index()
     {
-        //$movieModel = new MovieModel();
-        //$movies = $movieModel->getAllMovies();
+        /*$movieModel = new MovieModel();
+        $movies = $movieModel->getAllMovies();*/
 
-        //$template = $this->twig->load('Page/index.html.twig');
-        //echo $template->render(["movies" => $movies]);
-        echo "index";
+        $template = $this->twig->load('index.html.twig');
+        echo $template->render();
+        //echo "index";
     }
 
     public function error404()
