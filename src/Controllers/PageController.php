@@ -21,6 +21,16 @@ class PageController extends GeneralController
         //echo "index";
     }
 
+    public function register()
+    {
+        /*$movieModel = new MovieModel();
+        $movies = $movieModel->getAllMovies();*/
+
+        $template = $this->twig->load('register.html.twig');
+        echo $template->render();
+        //echo "index";
+    }
+
     public function error404()
     {
         /*
