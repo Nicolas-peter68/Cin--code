@@ -18,6 +18,11 @@ $router->map('GET', '/', function () {
     $controller->index();
 });
 
+$router->map('GET', '/register', function () {
+    $controller = new PageController();
+    $controller->register();
+});
+
 $match = $router->match();
 
 // call closure or throw 404 status
