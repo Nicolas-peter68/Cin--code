@@ -35,6 +35,15 @@ class PageController extends GeneralController
 
     }
 
+    public function loginPage()
+    {
+        $template = $this->twig->load('login.html.twig');
+        echo $template->render();
+
+    }
+
+
+
 
 
 }
