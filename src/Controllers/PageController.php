@@ -28,14 +28,13 @@ class PageController extends GeneralController
         echo "404";
     }
 
-    public function register()
+    public function registerPage()
     {
         $template = $this->twig->load('register.html.twig');
         echo $template->render();
 
-
-
-
     }
+
+
 
 }

@@ -20,7 +20,7 @@ $router->map('GET', '/', function () {
 
 $router->map('GET', '/register', function () {
     $controller = new PageController();
-    $controller->register();
+    $controller->registerPage();
 });
 
 $match = $router->match();

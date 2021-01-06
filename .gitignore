@@ -1,3 +1,4 @@
 vendor/
 node-modules/
 config/Config.php
+.idea
