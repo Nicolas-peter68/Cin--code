@@ -1,7 +1,7 @@
 {% extends "template.html.twig" %}
 	{% block body %}
 		<div class="body-content">
-			<form method="GET" action="{{baseUrl}}/login/loginUser">
+			<form method="POST" action="{{baseUrl}}/login/loginUser">
 				<div class="form-group">
 					<input type="text" name="username" placeholder="Pseudo">
 				</div>

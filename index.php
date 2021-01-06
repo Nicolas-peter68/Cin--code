@@ -33,7 +33,7 @@ $router->map('GET', '/login', function () {
     $controller->loginPage();
 });
 
-$router->map('POST', '/loginUser', function () {
+$router->map('POST', '/login/loginUser', function () {
     $controller = new PageController();
     $controller->loginUser();
 });

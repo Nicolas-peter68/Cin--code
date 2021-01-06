@@ -54,9 +54,6 @@ class PageController extends GeneralController
     public function loginUser() 
     {
         
-        $template = $this->twig->load('register.html.twig');
-        echo $template->render();
-
 
     }
 
