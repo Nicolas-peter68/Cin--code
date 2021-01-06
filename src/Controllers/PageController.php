@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\MovieModel;
+use App\Models\PersonneModel\UserModel;
 
 class PageController extends GeneralController
 {
@@ -53,6 +54,7 @@ class PageController extends GeneralController
 
     public function loginUser() 
     {
+       
         
 
     }

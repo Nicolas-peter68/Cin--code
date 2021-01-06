@@ -24,5 +24,11 @@ abstract class GeneralModel
         }
         return self::$_pdo;
     }
+
+
+    public function login($username, $password) 
+    {
+        
+    }
     
 }
