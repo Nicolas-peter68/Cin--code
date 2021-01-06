@@ -22,20 +22,20 @@ class PageController extends GeneralController
 
     public function error404()
     {
-        /*
-        $template = $this->twig->load('Page/error404.html.twig');
-        echo $template->render();*/
-        echo "404";
+        $template = $this->twig->load('404.html.twig');
+        echo $template->render();
+    }
+
+    public function movie()
+    {
+        $template = $this->twig->load('movie.html.twig');
+        echo $template->render();
     }
 
     public function register()
     {
         $template = $this->twig->load('register.html.twig');
         echo $template->render();
-
-
-
-
     }
 
 }
