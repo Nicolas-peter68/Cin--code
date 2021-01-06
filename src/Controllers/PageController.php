@@ -42,10 +42,21 @@ class PageController extends GeneralController
 
     }
 
-    public function login($username, $password) 
+    public function registerUser() 
     {
         
+    echo "register echo";
 
 
+    }
+
+
+    public function loginUser() 
+    {
+        
+    echo "login echo";
+
+
+    }
 
 }
