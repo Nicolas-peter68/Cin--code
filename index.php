@@ -23,15 +23,21 @@ $router->map('GET', '/register', function () {
     $controller->registerPage();
 });
 
+$router->map('POST', '/register/registerUser', function () {
+    $controller = new PageController();
+    $controller->registerUser();
+});
+
 $router->map('GET', '/login', function () {
     $controller = new PageController();
     $controller->loginPage();
 });
 
-$router->map('GET', '/loginUser', function () {
+$router->map('POST', '/loginUser', function () {
     $controller = new PageController();
     $controller->loginUser();
 });
+
 
 $match = $router->match();
 
