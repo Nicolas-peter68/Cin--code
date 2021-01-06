@@ -24,4 +24,5 @@ abstract class GeneralModel
         }
         return self::$_pdo;
     }
+    
 }

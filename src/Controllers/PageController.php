@@ -42,7 +42,9 @@ class PageController extends GeneralController
 
     }
 
-
+    public function login($username, $password) 
+    {
+        
 
 
 

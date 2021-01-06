@@ -28,6 +28,11 @@ $router->map('GET', '/login', function () {
     $controller->loginPage();
 });
 
+$router->map('GET', '/loginUser', function () {
+    $controller = new PageController();
+    $controller->loginUser();
+});
+
 $match = $router->match();
 
 // call closure or throw 404 status
