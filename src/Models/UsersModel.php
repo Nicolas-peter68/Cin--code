@@ -33,9 +33,19 @@ class UsersModel extends GeneralModel{
         $sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
         $req = $this->pdo->prepare($sql);
         $req->execute([$_POST['username'], $_POST['password']]);
-        return $req->fetch();
-        
+        return $req->fetch();     
     }
-    
+
+    public function loginAccount(){
+        if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
+            $sql = 'SELECT * FROM users WHERE (username = :username)';
+            $req = $this->pdo->prepare($sql);
+            $req->execute(['username' => $_POST['username']]);
+            $user = $req->fetch();
+
+
+
+        }
+    }   
 }
 
