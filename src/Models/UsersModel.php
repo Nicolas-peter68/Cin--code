@@ -28,14 +28,13 @@ class UsersModel extends GeneralModel{
              if($user){
                 echo "Utilisateur déjà utiliser";
                 die();
-             }
-
-        }else{
+                }
+        }
         $sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
         $req = $this->pdo->prepare($sql);
         $req->execute([$_POST['username'], $_POST['password']]);
         return $req->fetch();
-        }
+        
     }
     
 }
