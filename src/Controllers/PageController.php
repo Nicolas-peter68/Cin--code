@@ -45,17 +45,36 @@ class PageController extends GeneralController
 
     public function registerUser() 
     {
-        
-    echo "register echo";
+        if(!empty($_POST)){
+
+            if($_POST['username']){
+                $req = $pdo->prepare('select id FROM users WHERE username = ?');
+                $req->execute([$_POST['username']]);
+                $user = $req->fetch();
+                if($user){
+                    //$errors['username'] = 'Nom utilisateur déjà utiliser';
+                    echo "nom utilisateur déjà utiliser";
+                }
+            }  
 
 
+
+            if($_POST['password'] === $_POST['password_confirm']) {
+                echo "mot de passe juste";
+            }else {
+                //$errors['password'] = "Les mots de passe ne correspondent pas";
+                echo "erreur";
+            }
+
+
+
+
+
+        }
     }
 
 
-    public function loginUser() 
-    {
-       
-        echo "login echo";
+    public function registerAccount(){
 
     }
 
