@@ -28,6 +28,11 @@ $router->map('POST', '/register/registerUser', function () {
     $controller->registerUser();
 });
 
+$router->map('POST', '/login/loginUser', function () {
+    $controller = new PageController();
+    $controller->loginUser();
+});
+
 $router->map('GET', '/login', function () {
     $controller = new PageController();
     $controller->loginPage();

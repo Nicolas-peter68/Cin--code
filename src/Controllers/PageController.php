@@ -87,7 +87,7 @@ class PageController extends GeneralController
     public function loginUser() 
     {
         
-        echo "test";
+       
         
     }
 }

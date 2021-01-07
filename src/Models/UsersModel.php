@@ -26,5 +26,9 @@ class UsersModel extends GeneralModel{
         $req->execute([$_POST['username'], $_POST['password']]);
         return $req->fetch();
     }
+
+    public function loginAccount(){
+        
+    }
 }
 
