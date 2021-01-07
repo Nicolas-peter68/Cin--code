@@ -46,8 +46,9 @@ class UsersModel extends GeneralModel{
                 $req = $this->pdo->prepare($sql);
                 $req->execute([$_POST['password']]);
                 $user = $req->fetch();
+                $_SESSION['auth'] = $user;
                 if($user){
-                    echo "vous êtes bien connecter";    
+                    header('Location: account');
                    }
                    else{
                     echo "Mot de passe incorrect";

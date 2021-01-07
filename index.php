@@ -58,6 +58,11 @@ $router->map('GET', '/director', function () {
     $controller->directorPage();
 });
 
+$router->map('GET', '/login/account', function () {
+    $controller = new PageController();
+    $controller->accountPage();
+});
+
 
 
 

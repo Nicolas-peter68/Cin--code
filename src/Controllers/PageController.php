@@ -47,6 +47,13 @@ class PageController extends GeneralController
 
     }
 
+    public function accountPage()
+    {
+        $template = $this->twig->load('account.html.twig');
+        echo $template->render();
+
+    }
+
     public function moviePage()
     {
         $template = $this->twig->load('movie.html.twig');
