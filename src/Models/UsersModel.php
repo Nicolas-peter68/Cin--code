@@ -10,14 +10,7 @@ class UsersModel extends GeneralModel{
         parent::__construct();
     }
 
-    public function userControl(){
-        if($_POST['username']){
-           
-           
-            
-            
-        }
-    }
+    
   
     public function registerAccount(){
         if($_POST['username']){
@@ -29,6 +22,12 @@ class UsersModel extends GeneralModel{
                 echo "Utilisateur déjà utiliser";
                 die();
                 }
+        }
+
+        if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
+            echo "mot de passe incorrect";
+            die();
+            header('Location: index.php');
         }
         $sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
         $req = $this->pdo->prepare($sql);
@@ -48,24 +47,13 @@ class UsersModel extends GeneralModel{
                 $req->execute([$_POST['password']]);
                 $user = $req->fetch();
                 if($user){
-                    echo "vous êtes bien connecter";
-                   
+                    echo "vous êtes bien connecter";    
                    }
                    else{
                     echo "Mot de passe incorrect";
                    }
-                   
-                   
-           }
-            
-            /*if(password_verify($_POST['password'], $user->password)){
-                $_SESSION['auth'] = $user;
-                echo "vous êtes connecter";
-            }else{
-                    echo "Mot de passe ou Nom utilisateur incorre";
                 }
-
-        }*/
-    }
-    }}
+            }   
+    }   
+}
 

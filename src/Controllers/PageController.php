@@ -78,7 +78,6 @@ class PageController extends GeneralController
     public function registerUser() 
     {
         $userModel = new UsersModel();
-        $userModel->userControl();
         $userModel->registerAccount();
         
     }
