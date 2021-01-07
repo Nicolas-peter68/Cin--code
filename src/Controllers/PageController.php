@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Controllers;
+use App\Controllers\Database;
 
-use App\Models\MovieModel;
-use App\Models\PersonneModel\UserModel;
+$db = new Database ('root', '', 'crud');
 
 class PageController extends GeneralController
 {
@@ -45,9 +45,12 @@ class PageController extends GeneralController
 
     public function registerUser() 
     {
+
+        
+
         if(!empty($_POST)){
 
-            if($_POST['username']){
+            /*if($_POST['username']){
                 $req = $pdo->prepare('select id FROM users WHERE username = ?');
                 $req->execute([$_POST['username']]);
                 $user = $req->fetch();
@@ -55,12 +58,14 @@ class PageController extends GeneralController
                     //$errors['username'] = 'Nom utilisateur déjà utiliser';
                     echo "nom utilisateur déjà utiliser";
                 }
-            }  
+            } */ 
 
 
 
             if($_POST['password'] === $_POST['password_confirm']) {
-                echo "mot de passe juste";
+                $sql = "INSERT INTO users (`id`, `username`, `password`) VALUES (NULL, :username, :password)";
+                $req = $this->pdo->prepare($sql);
+                $req->execute(["username" => $username, "email" => $email, "password" => $password]);
             }else {
                 //$errors['password'] = "Les mots de passe ne correspondent pas";
                 echo "erreur";

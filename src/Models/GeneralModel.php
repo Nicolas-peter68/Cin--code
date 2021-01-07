@@ -26,9 +26,6 @@ abstract class GeneralModel
     }
 
 
-    public function login($username, $password) 
-    {
-        
-    }
+    
     
 }
