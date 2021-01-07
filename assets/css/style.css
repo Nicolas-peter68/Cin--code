@@ -1,3 +1,10 @@
 h1 {
     color: green;
 }
+.avatar{
+    float: left;
+    margin: 5px;
+}
+p{
+    text-align: justify;
+}
