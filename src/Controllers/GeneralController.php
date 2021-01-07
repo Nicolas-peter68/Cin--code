@@ -6,7 +6,6 @@ use Twig\Environment;
 use Twig\Extension\DebugExtension;
 use Config\Config;
 
-
 abstract class GeneralController 
 {
     private static ?Environment $_twig = null;
