@@ -10,8 +10,16 @@ class UsersModel extends GeneralModel{
         parent::__construct();
     }
 
-    public function registerAccount()
-    {
+    public function userControl(){
+        if($_POST['username']){
+           
+           
+            
+            
+        }
+    }
+  
+    public function registerAccount(){
         
         $sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
         $req = $this->pdo->prepare($sql);
@@ -19,3 +27,4 @@ class UsersModel extends GeneralModel{
         return $req->fetch();
     }
 }
+
