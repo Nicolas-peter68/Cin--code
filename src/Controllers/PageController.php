@@ -2,10 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Models\MovieModel;
+use App\Models\UsersModel;
+
 
 class PageController extends GeneralController
 {
+
+    
     public function __construct()
     {
         parent::__construct();
@@ -13,8 +16,6 @@ class PageController extends GeneralController
 
     public function index()
     {
-        /*$movieModel = new MovieModel();
-        $movies = $movieModel->getAllMovies();*/
 
         $template = $this->twig->load('index.html.twig');
         echo $template->render();
@@ -30,12 +31,26 @@ class PageController extends GeneralController
     {
         $template = $this->twig->load('movie.html.twig');
         echo $template->render();
+
     }
 
-    public function register()
+    public function registerPage()
     {
         $template = $this->twig->load('register.html.twig');
         echo $template->render();
     }
 
+    public function loginPage()
+    {
+        $template = $this->twig->load('login.html.twig');
+        echo $template->render();
+
+    }
+
+    public function registerUser() 
+    {
+        $userModel = new UsersModel();
+        $userModel->registerAccount();
+        
+    }
 }

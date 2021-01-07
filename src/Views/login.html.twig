@@ -1,4 +1,17 @@
 {% extends "template.html.twig" %}
-{% block body %}
 
-{% endblock %}
+	{% block body %}
+		<div class="body-content">
+			<form method="POST" action="{{baseUrl}}/login/loginUser">
+				<div class="form-group">
+					<input type="text" name="username" placeholder="Pseudo">
+				</div>
+
+				<div class="form-group">
+					<input type="password" name="password" placeholder="Mot de passe">
+				</div>
+
+				<button type="submit" class="form-group">Se connecter</button>
+			</form>
+		</div>
+	{% endblock %}

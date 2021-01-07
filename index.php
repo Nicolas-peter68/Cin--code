@@ -20,8 +20,24 @@ $router->map('GET', '/', function () {
 
 $router->map('GET', '/register', function () {
     $controller = new PageController();
-    $controller->register();
+    $controller->registerPage();
 });
+
+$router->map('POST', '/register/registerUser', function () {
+    $controller = new PageController();
+    $controller->registerUser();
+});
+
+$router->map('GET', '/login', function () {
+    $controller = new PageController();
+    $controller->loginPage();
+});
+
+$router->map('POST', '/login/loginUser', function () {
+    $controller = new PageController();
+    $controller->loginUser();
+});
+
 
 $match = $router->match();
 
