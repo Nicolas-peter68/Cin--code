@@ -33,10 +33,28 @@ $router->map('GET', '/login', function () {
     $controller->loginPage();
 });
 
-$router->map('POST', '/login/loginUser', function () {
+$router->map('GET', '/movie', function () {
     $controller = new PageController();
-    $controller->loginUser();
+    $controller->moviePage();
 });
+
+$router->map('GET', '/actor', function () {
+    $controller = new PageController();
+    $controller->actorPage();
+});
+
+$router->map('GET', '/news', function () {
+    $controller = new PageController();
+    $controller->newsPage();
+});
+
+$router->map('GET', '/director', function () {
+    $controller = new PageController();
+    $controller->directorPage();
+});
+
+
+
 
 
 $match = $router->match();
