@@ -42,10 +42,30 @@ class UsersModel extends GeneralModel{
             $req = $this->pdo->prepare($sql);
             $req->execute(['username' => $_POST['username']]);
             $user = $req->fetch();
+            if($_POST['password']){
+                $sql = 'select id FROM users WHERE password=?';
+                $req = $this->pdo->prepare($sql);
+                $req->execute([$_POST['password']]);
+                $user = $req->fetch();
+                if($user){
+                    echo "vous êtes bien connecter";
+                   
+                   }
+                   else{
+                    echo "Mot de passe incorrect";
+                   }
+                   
+                   
+           }
+            
+            /*if(password_verify($_POST['password'], $user->password)){
+                $_SESSION['auth'] = $user;
+                echo "vous êtes connecter";
+            }else{
+                    echo "Mot de passe ou Nom utilisateur incorre";
+                }
 
-
-
-        }
-    }   
-}
+        }*/
+    }
+    }}
 

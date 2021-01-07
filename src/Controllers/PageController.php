@@ -85,7 +85,8 @@ class PageController extends GeneralController
 
     public function loginUser() 
     {
-        
+        $userModel = new UsersModel();
+        $userModel->loginAccount();
         
     }
 }
