@@ -1,3 +1,15 @@
 h1 {
-    color: black;
+    color: blue;
+}
+.avatar{
+    float: left;
+    margin: 5px;
+}
+.affiche{
+    height:300px;
+    width: 200px;
+    background-color:navy;
+}
+p{
+    text-align: justify;
 }
