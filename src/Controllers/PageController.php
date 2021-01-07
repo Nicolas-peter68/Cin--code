@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-
+use App\Models\UsersModel;
 
 
 class PageController extends GeneralController
@@ -43,37 +43,8 @@ class PageController extends GeneralController
 
     public function registerUser() 
     {
-    
+        $userModel = new UsersModel();
+        $userModel->registerAccount();
         
-
-        if(!empty($_POST)){
-
-            
-
-            if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])){
-                $errors['username'] = "Your speudo is not good ";
-            } else {
-
-                $sql = 'select id FROM users WHERE username = ?' ;
-                $req->prepare($sql);
-        
-                $req->execute([$_POST['username']]);
-        
-                $user = $req->fetch();
-                if($user){
-                    echo 'This username is already take';
-        
-            }
-
-            if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
-                echo "Mot de passe incorrect";
-            }
-
-
-        }
-    }
-
-
-   
     }
 }
