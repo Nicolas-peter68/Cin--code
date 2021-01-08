@@ -14,25 +14,42 @@ class UsersModel extends GeneralModel{
 
   
     public function registerAccount(){
-        if($_POST['username']){
-             $proto = new Prototype();
-             $user = $proto->reqQuery('select id FROM users WHERE username=?',[$_POST['username']])->fetch();
-             if($user){
-                echo "Utilisateur déjà utiliser";
+        $errors = array();
+        if(!empty($_POST)){
+            if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
+                $errors['username'] = "Pseudo invalide veuillez réessayer";
+                echo "Pseudo invalide veuillez réessayer";
 
-                die();
+            } else {
+                 $proto = new Prototype();
+                 $user = $proto->reqQuery('select id FROM users WHERE username=?',[$_POST['username']])->fetch();
+                 if($user){
+                    $errors['username'] = 'Nom utilisateur déjà utiliser !';
+                    echo 'Nom utilisateur déjà utiliser !';
+                    }
+            }
+
+            if(empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+                $errors['email'] = 'Adresse email invalide !';
+            } else {
+                $proto = new Prototype();
+                $email = $proto->reqQuery('select id FROM users WHERE email=?',[$_POST['email']])->fetch();
+                if($email){
+                    $errors['email'] = 'Adresse email déjà utiliser !';
+                    echo 'Adresse email déjà utiliser !';
                 }
-        }
+            }
 
-        if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
-            echo "mot de passe incorrect";
-            die();
-            header('Location: index.php');
+            if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
+                $errors['password'] = 'Les mots de passe ne correspondent pas !';
+                echo 'Les mots de passe ne correspondent pas !';
+            }
+            if(empty($errors)) {
+                $proto = new Prototype();
+                $proto->reqQuery("INSERT INTO users SET username = ?, password = ?, email = ?", [$_POST['username'], $_POST['password'], $_POST['email']]);
+                echo "votre compte a bien été crée";
+            }
         }
-        $sql = 'INSERT INTO users (username, password) VALUES (?, ?)';
-        $req = $this->pdo->prepare($sql);
-        $req->execute([$_POST['username'], $_POST['password']]);
-        return $req->fetch();     
     }
 
     public function loginAccount(){

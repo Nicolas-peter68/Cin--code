@@ -17,22 +17,11 @@ class Prototype extends UsersModel
        }else{
            $req = $this->pdo->query($query);
        }
-
         return $req;
-
-
-
-
-
-
     }
 
-
-/*$db = new Prototype();
-$user = $db->reqQuery('SELECT * FROM users')->fetchAll();
-echo '<pre>' . print_r($user, true) . '</pre';*/
-
-
-
+    public function idUser(){
+        return $this->pdo->lastInsertId();
+    }
 
 }
