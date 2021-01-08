@@ -10,16 +10,16 @@ class UsersModel extends GeneralModel{
         parent::__construct();
     }
 
-    
+
+
   
     public function registerAccount(){
         if($_POST['username']){
-             $sql = 'select id FROM users WHERE username=?';
-             $req = $this->pdo->prepare($sql);
-             $req->execute([$_POST['username']]);
-             $user = $req->fetch();
+             $proto = new Prototype();
+             $user = $proto->reqQuery('select id FROM users WHERE username=?',[$_POST['username']])->fetch();
              if($user){
                 echo "Utilisateur déjà utiliser";
+
                 die();
                 }
         }
@@ -40,7 +40,7 @@ class UsersModel extends GeneralModel{
             $sql = 'SELECT * FROM users WHERE (username = :username)';
             $req = $this->pdo->prepare($sql);
             $req->execute(['username' => $_POST['username']]);
-            $user = $req->fetch();
+            $users = $req->fetch();
             if($_POST['password']){
                 $sql = 'select id FROM users WHERE password=?';
                 $req = $this->pdo->prepare($sql);
@@ -48,7 +48,8 @@ class UsersModel extends GeneralModel{
                 $user = $req->fetch();
                 $_SESSION['auth'] = $user;
                 if($user){
-                    header('Location: account');
+
+
                    }
                    else{
                     echo "Mot de passe incorrect";
