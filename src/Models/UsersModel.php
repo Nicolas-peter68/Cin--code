@@ -4,6 +4,8 @@
 namespace App\Models;
 
 
+
+
 class UsersModel extends GeneralModel{
 
     public function __construct() {
@@ -14,6 +16,10 @@ class UsersModel extends GeneralModel{
 
   
     public function registerAccount(){
+        $test = new Confirm($_POST);
+
+        $test->checkIf('username', '$proto = new Prototype()', 'users', 'Erreur');
+        var_dump($test);
         $errors = array();
         if(!empty($_POST)){
             if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
@@ -54,7 +60,7 @@ class UsersModel extends GeneralModel{
 
     public function loginAccount(){
         if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
-            $sql = 'SELECT * FROM users WHERE (username = :username)';
+            $sql = 'SELECT * FROM users WHERE (username = :username OR email = :username)';
             $req = $this->pdo->prepare($sql);
             $req->execute(['username' => $_POST['username']]);
             $users = $req->fetch();
@@ -65,8 +71,7 @@ class UsersModel extends GeneralModel{
                 $user = $req->fetch();
                 $_SESSION['auth'] = $user;
                 if($user){
-
-
+                    echo "vous ete connecter";
                    }
                    else{
                     echo "Mot de passe incorrect";
