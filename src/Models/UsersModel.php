@@ -12,17 +12,33 @@ class UsersModel extends GeneralModel{
         parent::__construct();
     }
 
-
+    
 
   
     public function registerAccount(){
-        $test = new Confirm($_POST);
+        if(!empty($_POST)){/*
+            $test = new Confirm($_POST);
+            $test->alnumeriq('username', "Nom utilisateur invalide");
+            $test->checkUnique('username', '$proto = new Prototype()', 'users', "Pseudo déjà utiliser");
+            $test->checkEmailFilter('email', "Email invalide");
+            $test->checkUnique('email', '$proto = new Prototype()', 'users', "Email déjà utiliser");
+            $test->checkPasswordConfirm('password', "Vous devez rentrer un mot de passe valide");
+            $test->ifConfirmed();
+            var_dump($test);
+            var_dump($test->ifConfirmed());*/
 
-        //$test->checkIf('username', '$proto = new Prototype()', 'users', 'Erreur');
-        //var_dump($test);
-        $errors = array();
-        if(!empty($_POST)){
-            if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
+            // test de mon idée 
+            $test = new Confirm($_POST);
+            $test->alnumeriq('username', "Nom utilisateur invalide");
+            if($test->ifConfirmed()){
+                echo "cest vald cjrois";
+            }else{ echo "pas valide";}
+            $test->checkEmailFilter('email', "Email invalide");
+            if($test->ifConfirmed()){
+                echo "cest vald cjrois email";
+            }else{ echo "pas valide email";}
+        
+            /*if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
                 $errors['username'] = "Pseudo invalide veuillez réessayer";
                 echo "Pseudo invalide veuillez réessayer";
 
@@ -49,16 +65,16 @@ class UsersModel extends GeneralModel{
             if(empty($_POST['password']) || $_POST['password'] != $_POST['password_confirm']){
                 $errors['password'] = 'Les mots de passe ne correspondent pas !';
                 echo 'Les mots de passe ne correspondent pas !';
-            }
-            if(empty($errors)) {
+            }*/
+            /*if(empty($errors)) {
                 $proto = new Prototype();
                 $proto->reqQuery("INSERT INTO users SET username = ?, password = ?, email = ?", [$_POST['username'], $_POST['password'], $_POST['email']]);
                 echo "votre compte a bien été crée";
-            }
+            }*/
         }
     }
 
-    public function loginAccount(){
+    /*public function loginAccount(){
         if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
             $login = new Prototype();
             $user = $login->reqQuery('select id FROM users WHERE username=?',[$_POST['username']])->fetch();
@@ -76,6 +92,6 @@ class UsersModel extends GeneralModel{
                 }
             }
         }
-    }   
+    }   */
 }
 

@@ -7,7 +7,7 @@ namespace App\Models;
 class Confirm extends UsersModel
 {
     private $data;
-    private $errors;
+    private $errors = [];
 
     public function __construct($data)
     {
@@ -29,13 +29,33 @@ class Confirm extends UsersModel
         }
     }
 
-    public function checkUsername($field, $table, $errorMsg){
-        $proto = new Prototype(); // Cette class est dépéntante d'une autre je vais chercher prochainement comment l'a rendre indépendante
+    public function checkUnique($field, $table, $errorMsg){
+        $proto = new Prototype();
         $dataRegiste = $proto->reqQuery("select id FROM $table WHERE $field =?", [$this->getField($field)])->fetch();
         if($dataRegiste){
             $this->errors[$field] = $errorMsg;
-            echo 'Erreur !';
         }
+    }
+
+
+    public function checkEmailFilter($field, $errorMsg){
+        if(!filter_var($this->getField($field), FILTER_VALIDATE_EMAIL)){
+            $this->errors[$field] = $errorMsg;
+        }
+    }
+
+    
+
+    public function checkPasswordConfirm($field, $errorMsg){
+        $value = $this->getField($field);
+        if(empty($value)  || $value != $this->getField($field . '_confirm')){
+            $this->errors[$field] = $errorMsg;
+
+        }
+    }
+
+    public function ifConfirmed(){
+        return empty($this->errors);
     }
 
 
