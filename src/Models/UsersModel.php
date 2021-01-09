@@ -18,8 +18,8 @@ class UsersModel extends GeneralModel{
     public function registerAccount(){
         $test = new Confirm($_POST);
 
-        $test->checkIf('username', '$proto = new Prototype()', 'users', 'Erreur');
-        var_dump($test);
+        //$test->checkIf('username', '$proto = new Prototype()', 'users', 'Erreur');
+        //var_dump($test);
         $errors = array();
         if(!empty($_POST)){
             if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
@@ -60,24 +60,26 @@ class UsersModel extends GeneralModel{
 
     public function loginAccount(){
         if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){
-            $sql = 'SELECT * FROM users WHERE (username = :username OR email = :username)';
-            $req = $this->pdo->prepare($sql);
-            $req->execute(['username' => $_POST['username']]);
-            $users = $req->fetch();
-            if($_POST['password']){
-                $sql = 'select id FROM users WHERE password=?';
-                $req = $this->pdo->prepare($sql);
-                $req->execute([$_POST['password']]);
-                $user = $req->fetch();
-                $_SESSION['auth'] = $user;
-                if($user){
-                    echo "vous ete connecter";
-                   }
-                   else{
-                    echo "Mot de passe incorrect";
-                   }
+            $login = new Prototype();
+            $user = $login->reqQuery('select id FROM users WHERE username=?',[$_POST['username']])->fetch();
+            if($user){
+                if($_POST['password']){
+                    $sql = 'select id FROM users WHERE password=?';
+                    $req = $this->pdo->prepare($sql);
+                    $req->execute([$_POST['password']]);
+                    $user = $req->fetch();
+                    $_SESSION['auth'] = $user;
+                    if($user){
+                        echo "vous ete connecter";
+                    }
+                    else{
+                        echo "Mot de passe incorrect";
+                    }
                 }
-            }   
+            }
+
+
+        }
     }   
 }
 
