@@ -64,10 +64,8 @@ class UsersModel extends GeneralModel{
             $user = $login->reqQuery('select id FROM users WHERE username=?',[$_POST['username']])->fetch();
             if($user){
                 if($_POST['password']){
-                    $sql = 'select id FROM users WHERE password=?';
-                    $req = $this->pdo->prepare($sql);
-                    $req->execute([$_POST['password']]);
-                    $user = $req->fetch();
+                    $login = new Prototype();
+                    $user = $login->reqQuery('select id FROM users WHERE password=?',[$_POST['password']])->fetch();
                     $_SESSION['auth'] = $user;
                     if($user){
                         echo "vous ete connecter";
@@ -77,8 +75,6 @@ class UsersModel extends GeneralModel{
                     }
                 }
             }
-
-
         }
     }   
 }
