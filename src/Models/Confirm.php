@@ -27,13 +27,12 @@ class Confirm extends UsersModel
         if (!preg_match('/^[a-zA-Z0-9_]+$/', $this->getField($field))) {
                 $this->errors[$field] = $errorMsg;
             }
-
     }
 
     public function checkUniq($field, $table, $errorMsg){
         $proto = new Prototype();
-        $dataRegiste = $proto->reqQuery("select id FROM $table WHERE $field=?", [$this->getField($field)])->fetch();
-        if($dataRegiste){
+        $data = $proto->reqQuery("select id FROM $table WHERE $field=?", [$this->getField($field)])->fetch();
+        if($data){
             $this->errors[$field] = $errorMsg;
         }
     }
@@ -48,18 +47,17 @@ class Confirm extends UsersModel
         $value = $this->getField($field);
         if(empty($value)  || $value != $this->getField($field . '_confirm')){
             $this->errors[$field] = $errorMsg;
-
         }
     }
 
     public function ifConfirmed(){
-        return empty($this->errors);
-        //tableau vide = true
+        return empty($this->errors); //tableau vide = true
     }
 
     public function getErrors(){
         return $this->errors;
     }
+
 
 
 }

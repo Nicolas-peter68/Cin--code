@@ -35,4 +35,14 @@ class Session extends Prototype{
         return $flash;
     }
 
+    public function writeKey($key, $value){
+        $_SESSION[$key] = $value;
+    }
+
+    public function read($key){
+        return isset($_SESSION[$key]) ? $_SESSION[$key] : null;
+    }
+
+
+
 }

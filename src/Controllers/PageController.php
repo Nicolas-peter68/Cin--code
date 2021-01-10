@@ -99,7 +99,9 @@ class PageController extends GeneralController
     {
         $template = $this->twig->load('confirm.html.twig');
         echo $template->render();
-        // crée le confirm page oublie pas
-
+        $userModel = new UsersModel();
+        $userModel->confirmAccount();
     }
+
+
 }

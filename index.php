@@ -10,6 +10,7 @@ use App\Controllers\MovieController;
 
 //session_start();
 
+
 $router = new AltoRouter();
 $router->setBasePath(Config::getBasePath());
 

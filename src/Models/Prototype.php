@@ -4,14 +4,13 @@
 namespace App\Models;
 
 
+use App\Controllers\GeneralController;
+use App\Controllers\PageController;
+
 class Prototype extends UsersModel
 
 {
 
-    static function redirect(){
-        header("Location: $page");
-        exit();
-    }
 
     private $db;
 
@@ -35,7 +34,7 @@ class Prototype extends UsersModel
     }
 
     public function register($username, $password, $email){
-            $password = password_hash($password, PASSWORD_BCRYPT);
+            $password = $_POST['password'];
 
             $token = $this->randomstr(60);
             $this->reqQuery("INSERT INTO users SET username = ?, password = ?, email = ?, confirmation_token = ?", [
@@ -44,11 +43,23 @@ class Prototype extends UsersModel
                 $email,
                 $token
             ]);
-
             Session::getInstance()->setFlash('succes', "Un mail de c");
             $user_id = $this->idUser();
-            mail($email, 'Confirm your account', "Pour valider ton compte merci de cliquer ici\n\nhttp://projet/Prototype/confirm.php?id=$user_id&token=$token");
-            //Prototype::redirect('login.html.twig');
+            mail($email, 'Confirm your account', "Pour valider ton compte merci de cliquer ici\n\n http://projet/Cine-code/confirm.html.twig?id=$user_id&token=$token");
+            $test = new PageController();
+            $test->loginPage();
         }
+
+
+        public function confirm($user_id, $token){
+        $user = $this->reqQuery('SELECT * FROM users WHERE id= ?', [$user_id])->fetch();
+        if($user && $user->confirmation_token == $token){
+            $this->reqQuery('UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?', [$user_id]);
+            $_SESSION['auth'] = $user;
+            return true;
+                }
+            return false;
+        }
+
 
 }
