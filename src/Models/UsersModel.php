@@ -16,7 +16,16 @@ class UsersModel extends GeneralModel{
 
   
     public function registerAccount(){
-        if(!empty($_POST)){/*
+        $validator = new Validator($_POST);
+        $validator->isAlpha('username', "Votre pseudo n'est pas alphanumeriq");
+        $validator->isUniq('email', 'users', "Pseudo non disponnble");
+        var_dump($validator);
+
+        
+        
+        
+        
+        /*if(!empty($_POST)){
             $test = new Confirm($_POST);
             $test->alnumeriq('username', "Nom utilisateur invalide");
             $test->checkUnique('username', '$proto = new Prototype()', 'users', "Pseudo déjà utiliser");
@@ -28,15 +37,11 @@ class UsersModel extends GeneralModel{
             var_dump($test->ifConfirmed());*/
 
             // test de mon idée 
-            $test = new Confirm($_POST);
-            $test->alnumeriq('username', "Nom utilisateur invalide");
-            if($test->ifConfirmed()){
-                echo "cest vald cjrois";
-            }else{ echo "pas valide";}
-            $test->checkEmailFilter('email', "Email invalide");
-            if($test->ifConfirmed()){
-                echo "cest vald cjrois email";
-            }else{ echo "pas valide email";}
+            /*$test = new Confirm($_POST);
+            //$test->alnumeriq('username', "Nom utilisateur invalide");
+            $test->checkUnique('username', '$proto = new Prototype()', 'users', "Pseudo déjà utiliser");
+
+            
         
             /*if(empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
                 $errors['username'] = "Pseudo invalide veuillez réessayer";
@@ -72,7 +77,7 @@ class UsersModel extends GeneralModel{
                 echo "votre compte a bien été crée";
             }*/
         }
-    }
+
 
     /*public function loginAccount(){
         if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])){

@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-class Confirm extends UsersModel
+class Validator extends UsersModel
 {
     private $data;
     private $errors = [];
@@ -22,16 +22,17 @@ class Confirm extends UsersModel
     }
 
 
-    public function alnumeriq($field, $errorMsg){
-        if(!preg_match('/^[a-zA-Z0-9_]+$/', $this->getField($field))) {
-        $this->errors[$field] = $errorMsg;
+    public function isAlpha($field, $errorMsg)
+    {
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', $this->getField($field))) {
+                $this->errors[$field] = $errorMsg;
+            }
 
-        }
     }
 
-    public function checkUnique($field, $table, $errorMsg){
+    public function isUniq($field, $table, $errorMsg){
         $proto = new Prototype();
-        $dataRegiste = $proto->reqQuery("select id FROM $table WHERE $field =?", [$this->getField($field)])->fetch();
+        $dataRegiste = $proto->reqQuery("select id FROM $table WHERE $field=?", [$this->getField($field)])->fetch();
         if($dataRegiste){
             $this->errors[$field] = $errorMsg;
         }
