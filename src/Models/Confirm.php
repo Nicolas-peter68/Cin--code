@@ -44,8 +44,6 @@ class Confirm extends UsersModel
         }
     }
 
-    
-
     public function checkPasswordConfirm($field, $errorMsg){
         $value = $this->getField($field);
         if(empty($value)  || $value != $this->getField($field . '_confirm')){
@@ -56,6 +54,11 @@ class Confirm extends UsersModel
 
     public function ifConfirmed(){
         return empty($this->errors);
+        //tableau vide = true
+    }
+
+    public function getErrors(){
+        return $this->errors;
     }
 
 

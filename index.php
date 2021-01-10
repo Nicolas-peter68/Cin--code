@@ -63,6 +63,11 @@ $router->map('GET', '/login/account', function () {
     $controller->accountPage();
 });
 
+$router->map('GET', '/confirm', function () {
+    $controller = new PageController();
+    $controller->confirmPage();
+});
+
 
 
 
