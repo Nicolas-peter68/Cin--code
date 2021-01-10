@@ -16,9 +16,12 @@ class UsersModel extends GeneralModel{
 
   
     public function registerAccount(){
-        $validator = new Validator($_POST);
-        $validator->isAlpha('username', "Votre pseudo n'est pas alphanumeriq");
-        $validator->isUniq('email', 'users', "Pseudo non disponnble");
+        $validator = new Confirm($_POST);
+        $validator->usernameAlpha('username', "Votre pseudo n'est pas alphanumeriq");
+        $validator->checkUniq('username', 'users', "Pseudo non disponnble");
+        $validator->checkEmailFilter('email', "Votre email n'est pas un email");
+        $validator->checkUniq('email', 'users', "Email non disponnible");
+
         var_dump($validator);
 
         

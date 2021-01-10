@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-class Validator extends UsersModel
+class Confirm extends UsersModel
 {
     private $data;
     private $errors = [];
@@ -22,7 +22,7 @@ class Validator extends UsersModel
     }
 
 
-    public function isAlpha($field, $errorMsg)
+    public function usernameAlpha($field, $errorMsg)
     {
         if (!preg_match('/^[a-zA-Z0-9_]+$/', $this->getField($field))) {
                 $this->errors[$field] = $errorMsg;
@@ -30,14 +30,13 @@ class Validator extends UsersModel
 
     }
 
-    public function isUniq($field, $table, $errorMsg){
+    public function checkUniq($field, $table, $errorMsg){
         $proto = new Prototype();
         $dataRegiste = $proto->reqQuery("select id FROM $table WHERE $field=?", [$this->getField($field)])->fetch();
         if($dataRegiste){
             $this->errors[$field] = $errorMsg;
         }
     }
-
 
     public function checkEmailFilter($field, $errorMsg){
         if(!filter_var($this->getField($field), FILTER_VALIDATE_EMAIL)){
