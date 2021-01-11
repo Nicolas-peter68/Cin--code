@@ -65,9 +65,14 @@ class UsersModel extends GeneralModel
     public function accountConfirm(){
         //Voici ma super idée ItSemih :DD
         $confirm = new Confirm($_POST);
-        $confirm->strToken('token', "Erreur token");
+        $user = new Prototype();
+        $confirm->strToken('confirmation_token', "Erreur token");
         if ($confirm->ifConfirmed()){
-            echo "60";
+            if($_POST['id']){
+                $user->confirmAccount();
+                echo "comt confirmer";
+            }
+
         }
 
 

@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-use App\Controllers\GeneralController;
+
 use App\Controllers\PageController;
 
 class Prototype extends UsersModel
@@ -47,13 +47,13 @@ class Prototype extends UsersModel
             //$test->loginPage(); redige vers le login
         }
 
-    public function confirmAccount($confirmation_token, $id){
-
+    public function confirmAccount(){
+        $confirmation_token = $_POST['confirmation_token'];
+        $id = $_POST['id'];
         $this->reqQuery("UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?", [
             $confirmation_token,
             $id
         ]);
-        echo "c'est bon";
 
     }
 
