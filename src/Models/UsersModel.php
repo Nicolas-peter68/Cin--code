@@ -66,6 +66,8 @@ class UsersModel extends GeneralModel
         //Voici ma super idée ItSemih :DD
         $confirm = new Confirm($_POST);
         $user = new Prototype();
+        $confirmation_token = $_POST['confirmation_token'];
+        $id = $_POST['id'];
         $confirm->strToken('confirmation_token', "Erreur token");
         if ($confirm->ifConfirmed()){
             if($_POST['id']){

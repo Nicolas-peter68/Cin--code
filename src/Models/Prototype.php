@@ -50,6 +50,7 @@ class Prototype extends UsersModel
     public function confirmAccount(){
         $confirmation_token = $_POST['confirmation_token'];
         $id = $_POST['id'];
+
         $this->reqQuery("UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?", [
             $confirmation_token,
             $id
