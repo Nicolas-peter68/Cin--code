@@ -116,5 +116,10 @@ class PageController extends GeneralController
 
     }
 
+    public function listPage(){
+        $template = $this->twig->load('listfilm.html.twig');
+        echo $template->render();
+    }
+
 
 }

@@ -1,0 +1,15 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+  
+                    {% for film in films %}
+                        <li>{{film.titre}}
+                            {{film.date}}
+                        </li>
+                    {% endfor %}
+                
+
+
+
+
+{% endblock %}

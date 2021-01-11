@@ -81,7 +81,10 @@ $router->map('POST', '/addfilm/confirmFilm', function () {
     $controller->confirmFilm();
 });
 
-
+$router->map('GET', '/listfilm', function () {
+    $controller = new PageController();
+    $controller->listPage();
+});
 
 
 
