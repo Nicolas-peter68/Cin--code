@@ -11,9 +11,6 @@ class Prototype extends UsersModel
 
 {
 
-
-    private $db;
-
     public function randomstr($length){
             $alphabet = "0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN";
             return substr(str_shuffle(str_repeat($alphabet, $length)), 0, $length);
@@ -45,13 +42,22 @@ class Prototype extends UsersModel
             ]);
             Session::getInstance()->setFlash('succes', "Un mail de c");
             $user_id = $this->idUser();
-            mail($email, 'Confirm your account', "Pour valider ton compte merci de cliquer ici\n\n http://projet/Cine-code/confirm.html.twig?id=$user_id&token=$token");
+            mail($email, 'Confirm your account', "Pour valider ton compte merci de cliquer ici\n\n http://projet/Cine-code/confirm.php?id=$user_id&token=$token");
             $test = new PageController();
-            $test->loginPage();
+            //$test->loginPage(); redige vers le login
         }
 
+    public function confirmAccount($confirmation_token, $id){
 
-        public function confirm($user_id, $token){
+        $this->reqQuery("UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?", [
+            $confirmation_token,
+            $id
+        ]);
+        echo "c'est bon";
+
+    }
+
+        /*public function confirm($user_id, $token){
         $user = $this->reqQuery('SELECT * FROM users WHERE id= ?', [$user_id])->fetch();
         if($user && $user->confirmation_token == $token){
             $this->reqQuery('UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?', [$user_id]);
@@ -59,7 +65,17 @@ class Prototype extends UsersModel
             return true;
                 }
             return false;
-        }
+        }*/
+
+
+        /*public function confirmAccount(){
+
+            $id = new Prototype();
+            $id->idUser();
+            var_dump($id);
+            var_dump($id->idUser());
+            //en test
+        }*/
 
 
 }

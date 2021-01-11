@@ -99,8 +99,11 @@ class PageController extends GeneralController
     {
         $template = $this->twig->load('confirm.html.twig');
         echo $template->render();
+    }
+    public function confirmUser(){
         $userModel = new UsersModel();
-        $userModel->confirmAccount();
+        $userModel->accountConfirm();
+
     }
 
 

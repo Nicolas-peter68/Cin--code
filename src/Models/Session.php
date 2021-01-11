@@ -2,9 +2,10 @@
 
 
 namespace App\Models;
+use App\Controllers\GeneralController;
+use App\Controllers\PageController;
 
-
-class Session extends Prototype{
+class Session extends UsersModel{
 
     static $instance;
 

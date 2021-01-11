@@ -52,10 +52,22 @@ class Confirm extends UsersModel
 
     public function ifConfirmed(){
         return empty($this->errors); //tableau vide = true
+        echo "erreursdlqdlqsdsq";
     }
 
     public function getErrors(){
         return $this->errors;
+    }
+
+    public function strToken($field, $errorMsg){
+
+        $token_confirm = strlen($this->getField($field));
+        if($token_confirm === 60){
+
+        }else{
+            $this->errors[$field] = $errorMsg;
+        }
+
     }
 
 

@@ -43,18 +43,6 @@ class UsersModel extends GeneralModel
     }
 
 
-    public function confirmAccount(){
-
-        $id = new Prototype();
-        $id->idUser();
-        var_dump($id);
-        var_dump($id->idUser());
-        //en test
-    }
-
-
-
-
     public function loginAccount()
     {
         $proto = new Prototype();
@@ -64,12 +52,26 @@ class UsersModel extends GeneralModel
                 $user = $proto->reqQuery('select * FROM users WHERE password=?', [$_POST['password']])->fetch();
                 if($user){
                     echo "vous êtes connecter";
+                    return $_SESSION['auth'] = $user->fetch();
                 }
                 else {echo "mot de passe incorrect";}
             }else{
                 echo "Veuillez entrez un mdp";}
 
         }
-        
+
     }
+
+    public function accountConfirm(){
+        //Voici ma super idée ItSemih :DD
+        $confirm = new Confirm($_POST);
+        $confirm->strToken('token', "Erreur token");
+        if ($confirm->ifConfirmed()){
+            echo "60";
+        }
+
+
+    }
+
+
 }

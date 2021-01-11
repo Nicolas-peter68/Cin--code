@@ -68,6 +68,10 @@ $router->map('GET', '/confirm', function () {
     $controller = new PageController();
     $controller->confirmPage();
 });
+$router->map('POST', '/confirm/confirmAccount', function () {
+    $controller = new PageController();
+    $controller->confirmUser();
+});
 
 
 
