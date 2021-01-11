@@ -64,14 +64,6 @@ $router->map('GET', '/login/account', function () {
     $controller->accountPage();
 });
 
-$router->map('GET', '/confirm', function () {
-    $controller = new PageController();
-    $controller->confirmPage();
-});
-$router->map('POST', '/confirm/confirmAccount', function () {
-    $controller = new PageController();
-    $controller->confirmUser();
-});
 $router->map('GET', '/addfilm', function () {
     $controller = new PageController();
     $controller->filmPage();
@@ -86,6 +78,10 @@ $router->map('GET', '/listfilm', function () {
     $controller->listPage();
 });
 
+$router->map('GET', '/[i:confirmation_token]', function($confirmation_token){
+    $controller = new PageController();
+    $controller->confirmUser($confirmation_token);
+});
 
 
 

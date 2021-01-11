@@ -62,23 +62,13 @@ class UsersModel extends GeneralModel
 
     }
 
-    /*public function accountConfirm(){
-        //Voici ma super idée ItSemih :DD
-        $confirm = new Confirm($_POST);
-        $user = new Prototype();
-        $confirmation_token = $_POST['confirmation_token'];
-        $id = $_POST['id'];
-        $confirm->strToken('confirmation_token', "Erreur token");
-        if ($confirm->ifConfirmed()){
-            if($_POST['id']){
-                $user->confirmAccount();
-                echo "comt confirmer";
-            }
+    public function accountConfirm($confirmation_token){
+        $sql = "SELECT * FROM users WHERE confirmation_token = :confirmation_token1";
+        $req->prepare($sql);
+        $req->execute([":confirmation_token1" => $confirmation_token]);
+        return $req->fetch();
 
-        }
-
-
-    }*/
+    }
 
     public function addFilm(){
         $proto = new Prototype();
