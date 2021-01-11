@@ -62,7 +62,7 @@ class UsersModel extends GeneralModel
 
     }
 
-    public function accountConfirm(){
+    /*public function accountConfirm(){
         //Voici ma super idée ItSemih :DD
         $confirm = new Confirm($_POST);
         $user = new Prototype();
@@ -78,6 +78,11 @@ class UsersModel extends GeneralModel
         }
 
 
+    }*/
+
+    public function addFilm(){
+        $proto = new Prototype();
+        $proto->confirmFilm($_POST['titre'], $_POST['synopsis'], $_POST['datee'] );
     }
 
 

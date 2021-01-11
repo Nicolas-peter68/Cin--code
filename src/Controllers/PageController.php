@@ -103,6 +103,16 @@ class PageController extends GeneralController
     public function confirmUser(){
         $userModel = new UsersModel();
         $userModel->accountConfirm();
+    }
+
+    public function filmPage(){
+        $template = $this->twig->load('addfilm.html.twig');
+        echo $template->render();
+    }
+
+    public function confirmFilm(){
+        $userModel = new UsersModel();
+        $userModel->addFilm();
 
     }
 

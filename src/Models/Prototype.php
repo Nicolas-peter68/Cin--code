@@ -40,9 +40,9 @@ class Prototype extends UsersModel
                 $email,
                 $token
             ]);
-            Session::getInstance()->setFlash('succes', "Un mail de c");
+            //Session::getInstance()->setFlash('succes', "Un mail de c");
             $user_id = $this->idUser();
-            mail($email, 'Confirm your account', "Pour valider ton compte merci de cliquer ici\n\n http://projet/Cine-code/confirm.php?id=$user_id&token=$token");
+            //mail($email, 'Confirm your account', "Pour valider ton compte merci de cliquer ici\n\n http://projet/Cine-code/confirm.php?id=$user_id&token=$token");
             $test = new PageController();
             //$test->loginPage(); redige vers le login
         }
@@ -58,15 +58,26 @@ class Prototype extends UsersModel
 
     }
 
-        /*public function confirm($user_id, $token){
-        $user = $this->reqQuery('SELECT * FROM users WHERE id= ?', [$user_id])->fetch();
-        if($user && $user->confirmation_token == $token){
-            $this->reqQuery('UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?', [$user_id]);
-            $_SESSION['auth'] = $user;
-            return true;
-                }
-            return false;
-        }*/
+    public function confirmFilm($titre, $synopsis, $date)
+    {
+
+        $this->reqQuery("INSERT INTO films SET titre = ?, synopsis = ?, date = ?", [
+            $titre,
+            $synopsis,
+            $date
+        ]);
+        echo "film ajouter";
+    }
+
+    /*public function confirm($user_id, $token){
+    $user = $this->reqQuery('SELECT * FROM users WHERE id= ?', [$user_id])->fetch();
+    if($user && $user->confirmation_token == $token){
+        $this->reqQuery('UPDATE users SET confirmation_token = NULL, confirmed_at = NOW() WHERE id = ?', [$user_id]);
+        $_SESSION['auth'] = $user;
+        return true;
+            }
+        return false;
+    }*/
 
 
         /*public function confirmAccount(){

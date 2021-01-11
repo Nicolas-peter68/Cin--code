@@ -72,6 +72,15 @@ $router->map('POST', '/confirm/confirmAccount', function () {
     $controller = new PageController();
     $controller->confirmUser();
 });
+$router->map('GET', '/addfilm', function () {
+    $controller = new PageController();
+    $controller->filmPage();
+});
+$router->map('POST', '/addfilm/confirmFilm', function () {
+    $controller = new PageController();
+    $controller->confirmFilm();
+});
+
 
 
 
