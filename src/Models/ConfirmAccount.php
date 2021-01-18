@@ -9,27 +9,24 @@ class ConfirmAccount extends UsersModel
     private static $data;
     private static $errors = [];
 
-    public function __construct($data)
-    {
+    public function __construct($data) {
         self::$data = $data;
     }
 
-    private static function getField($field){
+    private static function getField($field) {
         if(!isset(self::$data[$field])){
             return null;
         }
         return self::$data[$field];
     }
 
-
-    public function usernameAlpha($field, $errorMsg)
-    {
+    public function usernameAlpha($field, $errorMsg) {
         if (!preg_match('/^[a-zA-Z0-9_]+$/', self::getField($field))) {
                 self::$errors[$field] = $errorMsg;
             }
     }
 
-    public function checkUniq($field, $table, $errorMsg){
+    public static function checkUniq($field, $table, $errorMsg){
         $data = Query::reqQuery("select id FROM $table WHERE $field=?", [self::getField($field)])->fetch();
         if($data){
             self::$errors[$field] = $errorMsg;
@@ -64,7 +61,5 @@ class ConfirmAccount extends UsersModel
             self::$errors[$field] = $errorMsg;
         }
     }
-
-
 
 }

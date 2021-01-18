@@ -7,7 +7,7 @@ namespace App\Models;
 
 use App\Controllers\PageController;
 
-class Query extends UsersModel
+class Query extends MoviesModel
 
 {
     

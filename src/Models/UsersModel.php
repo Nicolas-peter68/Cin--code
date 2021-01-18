@@ -12,11 +12,11 @@ class UsersModel extends GeneralModel
         $inProcces = New ConfirmAccount($_POST);
         $inProcces->usernameAlpha('username', "Votre pseudo n'est pas alphanumeriq");
         if ($inProcces->ifConfirmed()) {
-            $inProcces->checkUniq('username', 'users', "Pseudo non disponnble");
+            ConfirmAccount::checkUniq('username', 'users', "Pseudo non disponnble");
         }
         $inProcces->checkEmailFilter('email', "Votre email n'est pas un email");
         if ($inProcces->ifConfirmed()) {
-            $inProcces->checkUniq('email', 'users', "Email non disponnible");
+            ConfirmAccount::checkUniq('email', 'users', "Email non disponnible");
         }
         $inProcces->checkPasswordConfirm('password', "Les mots de passe ne correspondent pas");
         if ($inProcces->ifConfirmed()) {
@@ -36,6 +36,8 @@ class UsersModel extends GeneralModel
                 $user = Query::reqQuery('select * FROM users WHERE password=?', [$_POST['password']])->fetch();
                 if($user){
                     echo "vous êtes connecter";
+                    $_SESSION['auth'] = $user;
+                    $_SESSION['flash']['success'] = 'vous êtes maintenant connecté';
                 }
                 else {echo "mot de passe incorrect";}
             }else{
