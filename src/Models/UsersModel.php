@@ -10,5 +10,11 @@ class UsersModel extends GeneralModel{
         parent::__construct();
     }
 
+
+    public function registerUser(){
+        
+
+    }
+
     
 }
