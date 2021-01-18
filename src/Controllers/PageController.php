@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\MoviesModel;
 use App\Models\UsersModel;
 
 
@@ -47,10 +48,12 @@ class PageController extends GeneralController
 
     }
 
-    public function moviePage()
+    public function moviePage($id)
     {
+        $model = new MoviesModel();
+        $movie = $model->getMovieById($id);
         $template = $this->twig->load('movie.html.twig');
-        echo $template->render();
+        echo $template->render(["movie"=>$movie]);
 
     }
 
