@@ -8,66 +8,38 @@ namespace App\Models;
 
 class UsersModel extends GeneralModel
 {
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-
-    public function registerAccount()
-    {
-        $account = new Confirm($_POST);
-        $account->usernameAlpha('username', "Votre pseudo n'est pas alphanumeriq");
-        if ($account->ifConfirmed()) {
-            $account->checkUniq('username', 'users', "Pseudo non disponnble");
+    public function registerAccount(){
+        $inProcces = New Confirm($_POST);
+        $inProcces->usernameAlpha('username', "Votre pseudo n'est pas alphanumeriq");
+        if ($inProcces->ifConfirmed()) {
+            $inProcces->checkUniq('username', 'users', "Pseudo non disponnble");
         }
-        $account->checkEmailFilter('email', "Votre email n'est pas un email");
-        if ($account->ifConfirmed()) {
-            $account->checkUniq('email', 'users', "Email non disponnible");
+        $inProcces->checkEmailFilter('email', "Votre email n'est pas un email");
+        if ($inProcces->ifConfirmed()) {
+            $inProcces->checkUniq('email', 'users', "Email non disponnible");
         }
-        $account->checkPasswordConfirm('password', "Les mots de passe ne correspondent pas");
-        if ($account->ifConfirmed()) {
+        $inProcces->checkPasswordConfirm('password', "Les mots de passe ne correspondent pas");
+        if ($inProcces->ifConfirmed()) {
             Query::reqQuery("INSERT INTO users SET username = ?, password = ?, email = ?", [$_POST['username'], $_POST['password'], $_POST['email']]);
             echo "votre compte a bien été crée";
         } else {
-            $errors = $account->getErrors();
+            $errors = $inProcces->getErrors();
+            var_dump($inProcces->getErrors());
             echo "erreur";
         }
     }
 
-
-    public function loginAccount()
-    {
-        $proto = new Prototype();
-        $user = $proto->reqQuery('select * FROM users WHERE username=?', [$_POST['username']])->fetch();
+    public function loginAccount(){
+        $user = Query::reqQuery('select * FROM users WHERE username=?', [$_POST['username']])->fetch();
         if($user){
             if ($_POST['password']) {
-                $user = $proto->reqQuery('select * FROM users WHERE password=?', [$_POST['password']])->fetch();
+                $user = Query::reqQuery('select * FROM users WHERE password=?', [$_POST['password']])->fetch();
                 if($user){
                     echo "vous êtes connecter";
-                    return $_SESSION['auth'] = $user->fetch();
                 }
                 else {echo "mot de passe incorrect";}
             }else{
                 echo "Veuillez entrez un mdp";}
-
         }
-
     }
-
-    public function accountConfirm($confirmation_token){
-        $sql = "SELECT * FROM users WHERE confirmation_token = :confirmation_token1";
-        $req->prepare($sql);
-        $req->execute([":confirmation_token1" => $confirmation_token]);
-        return $req->fetch();
-
-    }
-
-    public function addFilm(){
-        $proto = new Prototype();
-        $proto->confirmFilm($_POST['titre'], $_POST['synopsis'], $_POST['datee'] );
-    }
-
-
 }

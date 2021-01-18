@@ -6,68 +6,63 @@ namespace App\Models;
 
 class Confirm extends UsersModel
 {
-    private $data;
-    private $errors = [];
+    private static $data;
+    private static $errors = [];
 
     public function __construct($data)
     {
-        $this->data = $data;
+        self::$data = $data;
     }
 
-    private function getField($field){
-        if(!isset($this->data[$field])){
+    private static function getField($field){
+        if(!isset(self::$data[$field])){
             return null;
         }
-        return $this->data[$field];
+        return self::$data[$field];
     }
 
 
     public function usernameAlpha($field, $errorMsg)
     {
-        if (!preg_match('/^[a-zA-Z0-9_]+$/', $this->getField($field))) {
-                $this->errors[$field] = $errorMsg;
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', self::getField($field))) {
+                self::$errors[$field] = $errorMsg;
             }
     }
 
     public function checkUniq($field, $table, $errorMsg){
-
-        $data = Query::reqQuery("select id FROM $table WHERE $field=?", [$this->getField($field)])->fetch();
+        $data = Query::reqQuery("select id FROM $table WHERE $field=?", [self::getField($field)])->fetch();
         if($data){
-            $this->errors[$field] = $errorMsg;
+            self::$errors[$field] = $errorMsg;
         }
     }
 
     public function checkEmailFilter($field, $errorMsg){
-        if(!filter_var($this->getField($field), FILTER_VALIDATE_EMAIL)){
-            $this->errors[$field] = $errorMsg;
+        if(!filter_var(self::getField($field), FILTER_VALIDATE_EMAIL)){
+            self::$errors[$field] = $errorMsg;
         }
     }
 
     public function checkPasswordConfirm($field, $errorMsg){
-        $value = $this->getField($field);
-        if(empty($value)  || $value != $this->getField($field . '_confirm')){
-            $this->errors[$field] = $errorMsg;
+        $value = self::getField($field);
+        if(empty($value)  || $value != self::getField($field . '_confirm')){
+            self::$errors[$field] = $errorMsg;
         }
     }
 
     public function ifConfirmed(){
-        return empty($this->errors); //tableau vide = true
-        echo "erreursdlqdlqsdsq";
+        return empty(self::$errors); //tableau vide = true
     }
 
     public function getErrors(){
-        return $this->errors;
+        return self::$errors;
     }
 
     public function strToken($field, $errorMsg){
-
-        $token_confirm = strlen($this->getField($field));
+        $token_confirm = strlen(self::getField($field));
         if($token_confirm === 60){
-
         }else{
-            $this->errors[$field] = $errorMsg;
+            self::$errors[$field] = $errorMsg;
         }
-
     }
 
 

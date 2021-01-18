@@ -96,28 +96,9 @@ class PageController extends GeneralController
         
     }
 
-    public function confirmUser($confirmation_token){
-        $userModel = new UsersModel();
-        $token = $userModel->accountConfirm($confirmation_token);
-        $template = $this->twig->load('confirm.html.twig');
-        echo $template->render(["token" => $token]);
-    }
+    
 
-    public function filmPage(){
-        $template = $this->twig->load('addfilm.html.twig');
-        echo $template->render();
-    }
-
-    public function confirmFilm(){
-        $userModel = new UsersModel();
-        $userModel->addFilm();
-
-    }
-
-    public function listPage(){
-        $template = $this->twig->load('listfilm.html.twig');
-        echo $template->render();
-    }
+    
 
 
 }

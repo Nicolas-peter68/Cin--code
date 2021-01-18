@@ -10,7 +10,7 @@ use App\Controllers\PageController;
 class Query extends UsersModel
 
 {
-
+    
     public function randomstr($length){
             $alphabet = "0123456789azertyuiopqsdfghjklmwxcvbnAZERTYUIOPQSDFGHJKLMWXCVBN";
             return substr(str_shuffle(str_repeat($alphabet, $length)), 0, $length);
@@ -28,10 +28,5 @@ class Query extends UsersModel
         return $req;
     }
 
-
-
-
     
-
-
 }
