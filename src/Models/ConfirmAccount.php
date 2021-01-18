@@ -4,7 +4,7 @@
 namespace App\Models;
 
 
-class Confirm extends UsersModel
+class ConfirmAccount extends UsersModel
 {
     private static $data;
     private static $errors = [];

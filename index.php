@@ -64,25 +64,6 @@ $router->map('GET', '/login/account', function () {
     $controller->accountPage();
 });
 
-$router->map('GET', '/addfilm', function () {
-    $controller = new PageController();
-    $controller->filmPage();
-});
-$router->map('POST', '/addfilm/confirmFilm', function () {
-    $controller = new PageController();
-    $controller->confirmFilm();
-});
-
-$router->map('GET', '/listfilm', function () {
-    $controller = new PageController();
-    $controller->listPage();
-});
-
-$router->map('GET', '/[i:confirmation_token]', function($confirmation_token){
-    $controller = new PageController();
-    $controller->confirmUser($confirmation_token);
-});
-
 
 
 $match = $router->match();

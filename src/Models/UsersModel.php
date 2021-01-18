@@ -9,7 +9,7 @@ namespace App\Models;
 class UsersModel extends GeneralModel
 {
     public function registerAccount(){
-        $inProcces = New Confirm($_POST);
+        $inProcces = New ConfirmAccount($_POST);
         $inProcces->usernameAlpha('username', "Votre pseudo n'est pas alphanumeriq");
         if ($inProcces->ifConfirmed()) {
             $inProcces->checkUniq('username', 'users', "Pseudo non disponnble");

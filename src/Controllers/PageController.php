@@ -14,86 +14,71 @@ class PageController extends GeneralController
         parent::__construct();
     }
 
-    public function index()
-    {
-
+    public function index() {
         $template = $this->twig->load('index.html.twig');
         echo $template->render();
     }
 
-    public function error404()
-    {
+    public function error404() {
         $template = $this->twig->load('404.html.twig');
         echo $template->render();
     }
 
-    public function movie()
-    {
+    public function movie() {
         $template = $this->twig->load('movie.html.twig');
         echo $template->render();
 
     }
 
-    public function registerPage()
-    {
+    public function registerPage() {
         $template = $this->twig->load('register.html.twig');
         echo $template->render();
     }
 
-    public function loginPage()
-    {
+    public function loginPage() {
         $template = $this->twig->load('login.html.twig');
         echo $template->render();
 
     }
 
-    public function accountPage()
-    {
+    public function accountPage() {
         $template = $this->twig->load('account.html.twig');
         echo $template->render();
-
     }
 
-    public function moviePage()
-    {
+    public function moviePage() {
         $template = $this->twig->load('movie.html.twig');
         echo $template->render();
-
     }
 
-    public function newsPage()
-    {
+    public function newsPage() {
         $template = $this->twig->load('news.html.twig');
         echo $template->render();
-
     }
 
-    public function actorPage()
-    {
+    public function actorPage() {
         $template = $this->twig->load('actor.html.twig');
         echo $template->render();
-
     }
 
-    public function directorPage()
-    {
+    public function directorPage() {
         $template = $this->twig->load('director.html.twig');
         echo $template->render();
-
     }
 
-    public function registerUser() 
-    {
+    public function registerUser()  {
         $userModel = new UsersModel();
         $userModel->registerAccount();
-        
     }
 
-    public function loginUser() 
-    {
+    public function loginUser() {
         $userModel = new UsersModel();
         $userModel->loginAccount();
-        
+    }
+
+    public function confirmPage(){
+        $template = $this->twig->load('confirm.html.twig');
+        echo $template->render();
     }
 
     
