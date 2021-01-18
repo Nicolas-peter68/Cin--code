@@ -47,6 +47,10 @@ class PageController extends GeneralController
 
     }
 
+    public function registerUser(){
+
+    }
+
     public function moviePage()
     {
         $template = $this->twig->load('movie.html.twig');
@@ -73,12 +77,5 @@ class PageController extends GeneralController
         $template = $this->twig->load('director.html.twig');
         echo $template->render();
 
-    }
-
-    public function registerUser() 
-    {
-        $userModel = new UsersModel();
-        $userModel->registerAccount();
-        
     }
 }
