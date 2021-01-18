@@ -30,8 +30,8 @@ class Confirm extends UsersModel
     }
 
     public function checkUniq($field, $table, $errorMsg){
-        $proto = new Prototype();
-        $data = $proto->reqQuery("select id FROM $table WHERE $field=?", [$this->getField($field)])->fetch();
+
+        $data = Query::reqQuery("select id FROM $table WHERE $field=?", [$this->getField($field)])->fetch();
         if($data){
             $this->errors[$field] = $errorMsg;
         }

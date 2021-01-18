@@ -28,18 +28,12 @@ class UsersModel extends GeneralModel
         }
         $account->checkPasswordConfirm('password', "Les mots de passe ne correspondent pas");
         if ($account->ifConfirmed()) {
-
-            $proto = new Prototype();
-            $proto->register($_POST['username'], $_POST['password'], $_POST['email'] );
-            $session = new Session();
-            $session->setFlash('succes', "confirmation envoyer");
+            Query::reqQuery("INSERT INTO users SET username = ?, password = ?, email = ?", [$_POST['username'], $_POST['password'], $_POST['email']]);
             echo "votre compte a bien été crée";
         } else {
             $errors = $account->getErrors();
             echo "erreur";
         }
-
-
     }
 
 

@@ -14,7 +14,7 @@ abstract class GeneralModel
         $this->pdo = self::getPDO();
     }
 
-    private static function getPDO()
+   public static function getPDO()
     {
         if (is_null(self::$_pdo)) {
             self::$_pdo = new PDO("mysql:host=localhost;dbname=" . Config::getDatabase(), Config::getUser(), Config::getPassword(), [
