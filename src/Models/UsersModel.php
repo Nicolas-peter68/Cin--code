@@ -9,14 +9,14 @@ namespace App\Models;
 class UsersModel extends GeneralModel
 {
     public function registerAccount(){
-        $inProcces = New ConfirmAccount($_POST);
+        $inProcces = New Confirm($_POST);
         $inProcces->usernameAlpha('username', "Votre pseudo n'est pas alphanumeriq");
         if ($inProcces->ifConfirmed()) {
-            ConfirmAccount::checkUniq('username', 'users', "Pseudo non disponnble");
+            Confirm::checkUniq('username', 'users', "Pseudo non disponnble");
         }
         $inProcces->checkEmailFilter('email', "Votre email n'est pas un email");
         if ($inProcces->ifConfirmed()) {
-            ConfirmAccount::checkUniq('email', 'users', "Email non disponnible");
+            Confirm::checkUniq('email', 'users', "Email non disponnible");
         }
         $inProcces->checkPasswordConfirm('password', "Les mots de passe ne correspondent pas");
         if ($inProcces->ifConfirmed()) {
@@ -43,5 +43,10 @@ class UsersModel extends GeneralModel
             }else{
                 echo "Veuillez entrez un mdp";}
         }
+    }
+
+    public function addFilm() {
+        Confirm::checkUniq('title', 'films', "Ce film à déjà été ajouter");
+
     }
 }
