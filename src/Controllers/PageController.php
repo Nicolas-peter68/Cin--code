@@ -76,9 +76,14 @@ class PageController extends GeneralController
         $userModel->loginAccount();
     }
 
-    public function confirmPage(){
-        $template = $this->twig->load('confirm.html.twig');
+    public function addfilmPage() {
+        $template = $this->twig->load('addfilm.html.twig');
         echo $template->render();
+    }
+
+    public function filmAdd () {
+        $userModel = new UsersModel();
+        $userModel->addFilm();
     }
 
     

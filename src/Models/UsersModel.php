@@ -10,7 +10,7 @@ class UsersModel extends GeneralModel
 {
     public function registerAccount(){
         $inProcces = New Confirm($_POST);
-        $inProcces->usernameAlpha('username', "Votre pseudo n'est pas alphanumeriq");
+        $inProcces->alpha('username', "Votre pseudo n'est pas alphanumeriq");
         if ($inProcces->ifConfirmed()) {
             Confirm::checkUniq('username', 'users', "Pseudo non disponnble");
         }
@@ -25,6 +25,7 @@ class UsersModel extends GeneralModel
         } else {
             $errors = $inProcces->getErrors();
             var_dump($inProcces->getErrors());
+            var_dump($errors);
             echo "erreur";
         }
     }
@@ -47,6 +48,12 @@ class UsersModel extends GeneralModel
 
     public function addFilm() {
         Confirm::checkUniq('title', 'films', "Ce film à déjà été ajouter");
-
+        $movies = new Confirm($_POST);
+        $movies->alpha('titre', "Le film n'a pas un bon nom");
+        if ($movies->ifConfirmed()) {
+            Confirm::checkUniq('titre', 'films', "Ce film à déjà été ajouter");
+            Query::reqQuery("INSERT INTO films SET titre = ?, synopsis = ?, date = ?", [$_POST['titre'], $_POST['synopsis'], $_POST['date']]);
+            echo "le film à  été ajouter";
+        }
     }
 }

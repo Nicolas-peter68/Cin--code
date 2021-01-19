@@ -20,7 +20,7 @@ class Confirm extends UsersModel
         return self::$data[$field];
     }
 
-    public function usernameAlpha($field, $errorMsg) {
+    public function alpha($field, $errorMsg) {
         if (!preg_match('/^[a-zA-Z0-9_]+$/', self::getField($field))) {
                 self::$errors[$field] = $errorMsg;
             }

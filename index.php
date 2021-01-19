@@ -66,6 +66,17 @@ $router->map('GET', '/login/account', function () {
 
 
 
+$router->map('GET', '/addfilm', function () {
+    $controller = new PageController();
+    $controller->addfilmPage();
+});
+
+$router->map('POST', '/addfilm/filmAdd', function () {
+    $controller = new PageController();
+    $controller->filmAdd();
+});
+
+
 $match = $router->match();
 
 // call closure or throw 404 status
