@@ -1,20 +1,33 @@
 {% extends "template.html.twig" %}
-{% block title %}{{movie.titre}}
+{% block title %}
+	{{movie.titre}}
 {% endblock %}
 {% block body %}
 	<h1 class="mt-5">{{movie.titre}}</h1>
 	<ul>
-		<li>Réalisé par:{{movie.artiste}} </li>
+		<li>Réalisé par:
+			{{movie.prenom}}
+			{{movie.nom}}
+		</li>
 		<li>Année:
 			{{movie.annee}}</li>
-		<li>Acteurs:{{movie.acteurs}}
+		<li>
+			<ul>
+				{% for actor in actors %}
+					<li>
+						<a href="{{baseUrl}}/actor/{{actor.id}}">{{ actor.prenom}}
+							{{actor.nom}}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
 		</li>
 		<li>Genre:
 			{{movie.genre}}
 		</li>
 	</ul>
-	<h2>Synopsis</h2>
 	<img src="{{baseUrl}}/assets/img/affiches/{{movie.affiche}}">
+	<h2>Synopsis</h2>
 	<p>
 		{{movie.synopsis}}
 	</p>

@@ -53,16 +53,15 @@ class PageController extends GeneralController
     {
         $model = new MoviesModel();
         $movie = $model->getMovieById($id);
+        $actors = $model->getActorsFromMovie($id);
         $template = $this->twig->load('movie.html.twig');
-        echo $template->render(["movie"=>$movie]);
-
+        echo $template->render(["movie"=>$movie, "actors"=>$actors]);
     }
-
     public function newsPage()
     {
+
         $template = $this->twig->load('news.html.twig');
         echo $template->render();
-
     }
 
     public function actorPage()
