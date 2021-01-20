@@ -1,13 +1,11 @@
 {% extends "template.html.twig" %}
 {% block body %}
-	<h1 class="mt-5">Accueil</h1>
-
-	<h1>Dernières sorties</h1>
+	<h1 class="mt-5">Dernières sorties</h1>
 	<div class="row">
-		{% for movie in movies|slice(0, 6) %}
+		{% for movie in movies %}
 			<div class="col-md-4 mb-3">
 				<div class="card">
-				<img src="{{baseUrl}}/assets/img/affiches/{{movie.affiche}}" class="card-img-top" alt="...">
+				<img src="{{baseUrl}}/assets/img/affiches/{{movie.affiche}}" class="card-img-top" alt="..." style="height:450px">
 					<div class="card-body">
 						<h5 class="card-title">{{movie.titre}}</h5>
 						<p class="card-text">{{movie.synopsis|u.truncate(200,'...',false)}}</p>
