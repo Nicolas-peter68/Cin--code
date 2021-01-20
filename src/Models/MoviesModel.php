@@ -11,4 +11,12 @@ class MoviesModel extends GeneralModel
         $req->execute([$id]);
         return $req->fetch();
     }
+
+    public function getAllMovies()
+    {
+        $sql = "SELECT * FROM films, artistes WHERE films.id_artiste=artistes.id";
+        $req = $this->pdo->prepare($sql);
+        $req->execute();
+        return $req->fetchAll();
+    }
 }

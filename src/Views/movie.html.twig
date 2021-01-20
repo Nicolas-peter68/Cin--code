@@ -4,7 +4,7 @@
 {% block body %}
 	<h1 class="mt-5">{{movie.titre}}</h1>
 	<ul>
-		<li>Réalisé par: Tartempion</li>
+		<li>Réalisé par:{{movie.artiste}} </li>
 		<li>Année:
 			{{movie.annee}}</li>
 		<li>Acteurs:
@@ -14,7 +14,7 @@
 		</li>
 	</ul>
 	<h2>Synopsis</h2>
-	<img src="../assets/img/affiches/{{movie.affiche}}">
+	<img src="{{baseUrl}}/assets/img/affiches/{{movie.affiche}}">
 	<p>
 		{{movie.synopsis}}
 	</p>

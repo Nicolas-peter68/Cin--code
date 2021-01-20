@@ -17,9 +17,10 @@ class PageController extends GeneralController
 
     public function index()
     {
-
+        $model = new MoviesModel();
+        $movies = $model->getAllMovies();
         $template = $this->twig->load('index.html.twig');
-        echo $template->render();
+        echo $template->render(["movies"=>$movies]);
     }
 
     public function error404()
