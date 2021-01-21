@@ -69,8 +69,16 @@ class PageController extends GeneralController
     public function actorPage($id)
     {
         $model = new ActorsModel();
-        $actors = $model->getActorsById($id);
+        $actors = $model->getActorById($id);
         $template = $this->twig->load('actor.html.twig');
+        echo $template->render(["actors"=>$actors]);
+    }
+
+    public function allActorPage()
+    {
+        $model = new ActorsModel();
+        $actors = $model->getAllActors();
+        $template = $this->twig->load('AllActors.html.twig');
         echo $template->render(["actors"=>$actors]);
     }
 
@@ -80,6 +88,14 @@ class PageController extends GeneralController
         $director = $model->getDirectorsById($id);
         $template = $this->twig->load('director.html.twig');
         echo $template->render(["director"=>$director]);
+    }
+    
+    public function allDirectorsPage()
+    {
+        $model = new DirectorsModel();
+        $directors = $model->getAllDirectors();
+        $template = $this->twig->load('AllDirectors.html.twig');
+        echo $template->render(["directors"=>$directors]);
     }
 
     public function registerUser() 

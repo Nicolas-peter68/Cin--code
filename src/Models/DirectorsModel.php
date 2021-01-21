@@ -10,4 +10,12 @@ class DirectorsModel extends GeneralModel{
         $req->execute([$id]);
         return $req->fetch();
     }
+
+    public function getAllDirectors()
+    {
+        $sql = "SELECT * FROM artistes, artiste_role WHERE artiste_role.id_role=2 AND artistes.id=artiste_role.id_artiste";
+        $req = $this->pdo->prepare($sql);
+        $req->execute();
+        return $req->fetchAll();
+    }
 }

@@ -43,6 +43,11 @@ $router->map('GET', '/actor/[i:id]', function ($id) {
     $controller->actorPage($id);
 });
 
+$router->map('GET', '/allActors', function () {
+    $controller = new PageController();
+    $controller->allActorPage();
+});
+
 $router->map('GET', '/news', function () {
     $controller = new PageController();
     $controller->newsPage();
@@ -53,9 +58,10 @@ $router->map('GET', '/director/[i:id]', function ($id) {
     $controller->directorPage($id);
 });
 
-
-
-
+$router->map('GET', '/allDirectors', function () {
+    $controller = new PageController();
+    $controller->allDirectorsPage();
+});
 
 $match = $router->match();
 
