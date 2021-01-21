@@ -1,7 +1,8 @@
 {
     "require": {
         "altorouter/altorouter": "^2.0",
-        "twig/twig": "^3.0"
+        "twig/twig": "^3.0",
+        "twig/string-extra": "^3.2"
     },
     "autoload": {
         "psr-4": {

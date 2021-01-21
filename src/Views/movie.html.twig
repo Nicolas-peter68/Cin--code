@@ -1,16 +1,34 @@
 {% extends "template.html.twig" %}
-{% block tille %}Film{% endblock %}
+{% block title %}
+	{{movie.titre}}
+{% endblock %}
 {% block body %}
-<h1 class="mt-5">Machin truc</h1>
+	<h1 class="mt-5">{{movie.titre}}</h1>
 	<ul>
-		<li>Réalisé par: Tartempion</li>
-		<li>Année: 1970</li>
-		<li>Acteurs: </li>
-		<li>Genre:</li>
+		<li>Réalisé par:
+			{{movie.prenom}}
+			{{movie.nom}}
+		</li>
+		<li>Année:
+			{{movie.annee}}</li>
+		<li>
+			<ul>
+				{% for actor in actors %}
+					<li>
+						<a href="{{baseUrl}}/actor/{{actor.id}}">{{ actor.prenom}}
+							{{actor.nom}}
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</li>
+		<li>Genre:
+			{{movie.genre}}
+		</li>
 	</ul>
-    <h2>Synopsis</h2>
-    <div class="affiche"></div>
+	<img src="{{baseUrl}}/assets/img/affiches/{{movie.affiche}}">
+	<h2>Synopsis</h2>
 	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in ex ornare, cursus sapien quis, pharetra dolor. Nulla id ex at sapien finibus molestie eget eget turpis. Donec placerat ullamcorper dignissim. Praesent et placerat mauris, et pretium odio. Aliquam suscipit tristique ante, at mollis nisl interdum posuere. Sed erat massa, dictum vel lacinia sed, porttitor sed justo. Nunc vitae dapibus quam, nec viverra ipsum. Aliquam quis risus ligula. Curabitur pulvinar ullamcorper sapien, eu egestas est maximus ac.
+		{{movie.synopsis}}
 	</p>
 {% endblock %}

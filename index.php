@@ -38,9 +38,9 @@ $router->map('GET', '/movie/[i:id]', function ($id) {
     $controller->moviePage($id);
 });
 
-$router->map('GET', '/actor', function () {
+$router->map('GET', '/actor/[i:id]', function ($id) {
     $controller = new PageController();
-    $controller->actorPage();
+    $controller->actorPage($id);
 });
 
 $router->map('GET', '/news', function () {
