@@ -24,11 +24,7 @@ class PageController extends GeneralController
         echo $template->render();
     }
 
-    public function movie() {
-        $template = $this->twig->load('movie.html.twig');
-        echo $template->render();
 
-    }
 
     public function registerPage() {
         $template = $this->twig->load('register.html.twig');
@@ -38,53 +34,9 @@ class PageController extends GeneralController
     public function loginPage() {
         $template = $this->twig->load('login.html.twig');
         echo $template->render();
-
     }
 
-    public function accountPage() {
-        $template = $this->twig->load('account.html.twig');
-        echo $template->render();
-    }
 
-    public function moviePage() {
-        $template = $this->twig->load('movie.html.twig');
-        echo $template->render();
-    }
-
-    public function newsPage() {
-        $template = $this->twig->load('news.html.twig');
-        echo $template->render();
-    }
-
-    public function actorPage() {
-        $template = $this->twig->load('actor.html.twig');
-        echo $template->render();
-    }
-
-    public function directorPage() {
-        $template = $this->twig->load('director.html.twig');
-        echo $template->render();
-    }
-
-    public function registerUser()  {
-        $userModel = new UsersModel();
-        $userModel->registerAccount();
-    }
-
-    public function loginUser() {
-        $userModel = new UsersModel();
-        $userModel->loginAccount();
-    }
-
-    public function addfilmPage() {
-        $template = $this->twig->load('addfilm.html.twig');
-        echo $template->render();
-    }
-
-    public function filmAdd () {
-        $userModel = new UsersModel();
-        $userModel->addFilm();
-    }
 
     
 

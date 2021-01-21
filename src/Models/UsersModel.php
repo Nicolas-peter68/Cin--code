@@ -8,7 +8,53 @@ namespace App\Models;
 
 class UsersModel extends GeneralModel
 {
+    public function checkUniq($username){
+        $data = Query::reqQuery("select id FROM users WHERE username=?", ([$username]))->fetch();
+        if($data){
+            echo " username pris";
+            die();
+        }
+    }
+
+    public function checkExist($username){
+        $data = Query::reqQuery("select id FROM users WHERE username=?", ([$username]))->fetch();
+        if(!$data){
+            echo "Cette utilisateur n'existe pas";
+            die();
+        }
+    }
+
+    public function checkEmail($email) {
+        $data = Query::reqQuery("select id FROM users WHERE email=?", ([$email]))->fetch();
+        if($data){
+            echo "Email déjà pris";
+            die();
+        }
+    }
+
     public function registerAccount(){
+        Query::reqQuery("INSERT INTO users SET username = ?, password = ?, email = ?", [$_POST['username'], $_POST['password'], $_POST['email']]);
+        echo "compte crée";
+    }
+
+
+    public function loginAccount(){
+        $user = Query::reqQuery('select * FROM users WHERE username=?', [$_POST['username']])->fetch();
+        if($user){
+            if ($_POST['password']) {
+                $user = Query::reqQuery('select * FROM users WHERE password=?', [$_POST['password']])->fetch();
+                if($user){
+                    echo "vous êtes connecter";
+                    $_SESSION['auth'] = $user;
+                    $_SESSION['flash']['success'] = 'vous êtes maintenant connecté';
+                }
+                else {echo "mot de passe incorrect";}
+            }else{
+                echo "Veuillez entrez un mdp";}
+        }
+    }
+
+    /*public function registerAccount(){
         $inProcces = New Confirm($_POST);
         $inProcces->alpha('username', "Votre pseudo n'est pas alphanumeriq");
         if ($inProcces->ifConfirmed()) {
@@ -55,5 +101,5 @@ class UsersModel extends GeneralModel
             Query::reqQuery("INSERT INTO films SET titre = ?, synopsis = ?, date = ?", [$_POST['titre'], $_POST['synopsis'], $_POST['date']]);
             echo "le film à  été ajouter";
         }
-    }
+    }*/
 }

@@ -6,6 +6,8 @@ use Config\Config;
 /* liste des Controllers exemple que l'on utilise */
 use App\Controllers\PageController;
 use App\Controllers\MovieController;
+use App\Controllers\RegisterControllers;
+use App\Controllers\LoginControllers;
 /* fin dex Controller exemple */
 
 //session_start();
@@ -24,14 +26,9 @@ $router->map('GET', '/register', function () {
     $controller->registerPage();
 });
 
-$router->map('POST', '/register/registerUser', function () {
-    $controller = new PageController();
+$router->map('POST', '/register', function () {
+    $controller = new RegisterControllers();
     $controller->registerUser();
-});
-
-$router->map('POST', '/login/loginUser', function () {
-    $controller = new PageController();
-    $controller->loginUser();
 });
 
 $router->map('GET', '/login', function () {
@@ -39,42 +36,14 @@ $router->map('GET', '/login', function () {
     $controller->loginPage();
 });
 
-$router->map('GET', '/movie', function () {
-    $controller = new PageController();
-    $controller->moviePage();
-});
-
-$router->map('GET', '/actor', function () {
-    $controller = new PageController();
-    $controller->actorPage();
-});
-
-$router->map('GET', '/news', function () {
-    $controller = new PageController();
-    $controller->newsPage();
-});
-
-$router->map('GET', '/director', function () {
-    $controller = new PageController();
-    $controller->directorPage();
-});
-
-$router->map('GET', '/login/account', function () {
-    $controller = new PageController();
-    $controller->accountPage();
+$router->map('POST', '/login', function () {
+    $controller = new LoginControllers();
+    $controller->loginUser();
 });
 
 
 
-$router->map('GET', '/addfilm', function () {
-    $controller = new PageController();
-    $controller->addfilmPage();
-});
 
-$router->map('POST', '/addfilm/filmAdd', function () {
-    $controller = new PageController();
-    $controller->filmAdd();
-});
 
 
 $match = $router->match();
