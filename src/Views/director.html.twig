@@ -1,26 +1,21 @@
 {% extends "template.html.twig" %}
-{% block title %}Producteur
+{% block title %}
+	{{director.prenom}}
+	{{director.nom}}
 {% endblock %}
 {% block body %}
-	<h1 class="mt-5">Tartempion</h1>
-	<ul>
-		<li>Né le : 1 janvier 1970 à Pétaouchnok</li>
-		<li>Nationalité : on sait pas</li>
-		<li>Films réalisés:</li>
-		<li>Profession :</li>
-	</ul>
-	<img class="avatar" src="assets/img/avatar.png" width="300px" alt="avatar">
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam in ex ornare, cursus sapien quis, pharetra dolor. Nulla id ex at sapien finibus molestie eget eget turpis. Donec placerat ullamcorper dignissim. Praesent et placerat mauris, et pretium odio. Aliquam suscipit tristique ante, at mollis nisl interdum posuere. Sed erat massa, dictum vel lacinia sed, porttitor sed justo. Nunc vitae dapibus quam, nec viverra ipsum. Aliquam quis risus ligula. Curabitur pulvinar ullamcorper sapien, eu egestas est maximus ac.
-						
-						Curabitur commodo, augue a accumsan vulputate, dui neque pretium enim, a gravida elit libero sed nibh. Etiam ut rhoncus ipsum, commodo sollicitudin orci. Nulla ac enim convallis, pulvinar velit vitae, blandit odio. Phasellus scelerisque est vel luctus vestibulum. Nullam sed nunc elit. Curabitur eros lacus, dapibus at elit nec, ultricies tempus nulla. Nulla eros leo, luctus ut purus vitae, interdum imperdiet turpis. Morbi eleifend augue purus, ut condimentum ex condimentum congue. In hac habitasse platea dictumst. Vestibulum rhoncus dui in erat fermentum laoreet. Donec sit amet hendrerit libero, vitae posuere sem. Phasellus non neque eleifend, egestas ligula dapibus, porta purus. Aliquam molestie elit sit amet tellus congue varius at a magna. Ut eleifend nunc nec dapibus finibus. Curabitur vitae vulputate quam.
-						
-						Phasellus pulvinar eget est in porta. Quisque tempus, ante porta luctus accumsan, tellus mauris malesuada orci, in euismod turpis leo in nunc. Curabitur quis sem at ipsum eleifend dignissim sit amet sed nisi. Proin commodo consectetur sem, condimentum efficitur enim suscipit ac. Nunc sit amet varius elit. Curabitur sed vehicula orci. Mauris sit amet pretium ligula. Nullam faucibus diam nec urna cursus venenatis a quis turpis. Nulla et erat lacinia odio imperdiet vehicula. Quisque aliquam nunc mi, et varius est gravida quis. Sed id risus vel lectus gravida mattis non vitae sem.
-						
-						Nulla vehicula ipsum nisi, vitae rutrum enim tempus id. Ut auctor tortor at malesuada facilisis. Nullam arcu nisl, consequat a metus a, rutrum elementum arcu. Integer erat est, maximus ac blandit eget, ullamcorper non tortor. Ut vulputate felis vitae magna molestie vestibulum. Ut semper ut libero a eleifend. Duis gravida erat et auctor sagittis. Etiam posuere magna et nisi ultrices gravida. Nunc pharetra, justo vitae hendrerit aliquet, nibh enim porta turpis, at ultricies enim eros dapibus nisl. Aliquam a ipsum varius ex pulvinar lacinia non lobortis odio. Maecenas rhoncus dictum fermentum. Morbi tempus urna sit amet dolor malesuada molestie. Nunc vel felis sed ante molestie ultricies.
-						
-						Proin nisl felis, pulvinar porttitor sapien at, efficitur condimentum lacus. Integer ut tincidunt nibh. Donec mollis nisl a velit lobortis semper. Phasellus eu accumsan arcu. Cras condimentum sapien mi, id condimentum tortor malesuada id. Pellentesque posuere, ligula vel posuere sagittis, risus dui tempus mauris, id porta leo lorem ac neque. Vivamus tincidunt et lorem vel sollicitudin. Aenean vitae est vel massa elementum venenatis.
-						
-						Aenean bibendum urna id arcu varius, in eleifend diam ultricies. Sed ac velit in sapien pellentesque tempus ac et risus. Donec viverra magna ut nisi congue, id eleifend sem commodo. Mauris pretium libero vel magna elementum mollis. Curabitur nec ipsum sit amet massa dictum congue. Quisque porttitor, augue quis dictum mattis, magna massa viverra sapien, nec sollicitudin tellus augue vitae tortor. Integer ut lacus ac quam consectetur cursus. Fusce faucibus dui a nisi volutpat blandit. Proin vitae efficitur est.
-	</p>
+	{% if director.id %}
+		<h1 class="mt-5">{{director.prenom}}
+			{{director.nom}}</h1>
+		<ul>
+			<li>Né le :
+				{{director.naissance}}</li>
+		</ul>
+		<img class="avatar" src="{{baseUrl}}/assets/img/avatar.png" width="300px" alt="avatar">
+		<p>
+			{{director.biographie}}
+		</p>
+	{% else %}
+		<h1 class="mt-5">Ce réalisateur n'existe pas</h1>
+	{% endif %}
 {% endblock %}
