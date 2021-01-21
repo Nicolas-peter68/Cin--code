@@ -48,9 +48,9 @@ $router->map('GET', '/news', function () {
     $controller->newsPage();
 });
 
-$router->map('GET', '/director', function () {
+$router->map('GET', '/director/[i:id]', function ($id) {
     $controller = new PageController();
-    $controller->directorPage();
+    $controller->directorPage($id);
 });
 
 
