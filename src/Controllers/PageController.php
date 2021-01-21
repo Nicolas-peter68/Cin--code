@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\MoviesModel;
 use App\Models\UsersModel;
+use App\Models\ActorsModel;
 
 
 class PageController extends GeneralController
@@ -64,11 +65,12 @@ class PageController extends GeneralController
         echo $template->render();
     }
 
-    public function actorPage()
+    public function actorPage($id)
     {
+        $model = new ActorsModel();
+        $actors = $model->getActorsById($id);
         $template = $this->twig->load('actor.html.twig');
-        echo $template->render();
-
+        echo $template->render(["actors"=>$actors]);
     }
 
     public function directorPage()
