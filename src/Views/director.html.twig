@@ -4,15 +4,18 @@
 	{{director.nom}}
 {% endblock %}
 {% block body %}
-	<h1 class="mt-5">{{director.prenom}}
-		{{director.nom}}</h1>
-	<ul>
-		<li>Né le :
-			{{director.naissance}}</li>
-		<li>Nationalité : on sait pas</li>
-	</ul>
-	<img class="avatar" src="{{baseUrl}}/assets/img/avatar.png" width="300px" alt="avatar">
-	<p>
-		{{director.biographie}}
-	</p>
+	{% if director.id %}
+		<h1 class="mt-5">{{director.prenom}}
+			{{director.nom}}</h1>
+		<ul>
+			<li>Né le :
+				{{director.naissance}}</li>
+		</ul>
+		<img class="avatar" src="{{baseUrl}}/assets/img/avatar.png" width="300px" alt="avatar">
+		<p>
+			{{director.biographie}}
+		</p>
+	{% else %}
+		<h1 class="mt-5">Ce réalisateur n'existe pas</h1>
+	{% endif %}
 {% endblock %}
