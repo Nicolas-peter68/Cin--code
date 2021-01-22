@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 20 jan. 2021 à 14:19
+-- Généré le : ven. 22 jan. 2021 à 09:38
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -69,8 +69,8 @@ CREATE TABLE IF NOT EXISTS `artistes` (
 
 INSERT INTO `artistes` (`id`, `nom`, `prenom`, `naissance`, `biographie`) VALUES
 (1, 'Sanders', 'Rupert', '16 Mars 1971', 'Rupert Sanders, né le 16 mars 1971 à Westminster, est un réalisateur anglais.'),
-(2, 'Johansson', 'Scarlett', '22 Novembre 1984', 'Scarlett Johansson est une actrice, réalisatrice, scénariste, productrice de cinéma et chanteuse américano-danoise, née le 22 novembre 1984 à Manhattan (New York)1.\r\n\r\nRévélée à l\'âge de quatorze ans, grâce à sa prestation dans L\'Homme qui murmurait à l\'oreille des chevaux (1998) de Robert Redford, elle tient les rôles principaux de plusieurs films indépendants acclamés par la critique : Ghost World (2001), Lost in Translation et La Jeune Fille à la perle (2003). Ces deux derniers longs-métrages lui valent deux nominations aux Golden Globes2. Par la suite, elle tourne à trois reprises avec Woody Allen, dans le thriller Match Point (2005), la comédie Scoop (2006) et la comédie dramatique Vicky Cristina Barcelona (2008). Parallèlement, elle se diversifie en jouant dans le blockbuster The Island (2005), le thriller historique Deux sœurs pour un roi (2008) ou encore la comédie romantique Ce que pensent les hommes (2009).'),
-(4, 'Woodley', 'Shailene', '15 novembre 1991', 'Née à Simi Valley, en Californie, est la fille aînée de Lori Victor, conseillère pédagogique d\'un collège, et de Lonnie Woodley, directeur d\'école2. Elle a un jeune frère, prénommé Tanner Woodley (né en 1994). Dès l\'âge de 4 ans, elle a lancé sa carrière de mannequin. En 2006, ses parents ont divorcé.\r\n\r\nShailene Woodley est diplômée du lycée simi Valley High School5. Avant d\'obtenir le rôle principal dans la série La Vie secrète d\'une ado ordinaire, la jeune femme comptait intégrer l\'université de New York, afin d\'étudier l\'architecture d\'intérieur.'),
+(2, 'Johansson', 'Scarlett', '22 Novembre 1984', 'Scarlett Johansson est une actrice, réalisatrice, scénariste, productrice de cinéma et chanteuse américano-danoise, née le 22 novembre 1984 à Manhattan (New York).\r\n\r\nRévélée à l\'âge de quatorze ans, grâce à sa prestation dans L\'Homme qui murmurait à l\'oreille des chevaux (1998) de Robert Redford, elle tient les rôles principaux de plusieurs films indépendants acclamés par la critique : Ghost World (2001), Lost in Translation et La Jeune Fille à la perle (2003). Ces deux derniers longs-métrages lui valent deux nominations aux Golden Globes2. Par la suite, elle tourne à trois reprises avec Woody Allen, dans le thriller Match Point (2005), la comédie Scoop (2006) et la comédie dramatique Vicky Cristina Barcelona (2008). Parallèlement, elle se diversifie en jouant dans le blockbuster The Island (2005), le thriller historique Deux sœurs pour un roi (2008) ou encore la comédie romantique Ce que pensent les hommes (2009).'),
+(4, 'Woodley', 'Shailene', '15 novembre 1991', 'Née à Simi Valley, en Californie, est la fille aînée de Lori Victor, conseillère pédagogique d\'un collège, et de Lonnie Woodley, directeur d\'école. Elle a un jeune frère, prénommé Tanner Woodley (né en 1994). Dès l\'âge de 4 ans, elle a lancé sa carrière de mannequin. En 2006, ses parents ont divorcé.\r\n\r\nShailene Woodley est diplômée du lycée simi Valley High School. Avant d\'obtenir le rôle principal dans la série La Vie secrète d\'une ado ordinaire, la jeune femme comptait intégrer l\'université de New York, afin d\'étudier l\'architecture d\'intérieur.'),
 (5, 'Pitt', 'Brad', '18 décembre 1963', 'Repéré dans une publicité pour Levi\'s, Brad Pitt sort de l\'anonymat grâce à un petit rôle dans le film Thelma et Louise de Ridley Scott. En très peu de temps, il devient une véritable star et sa collaboration avec le réalisateur David Fincher donne naissance aux films culte Seven, Fight Club et L\'Étrange Histoire de Benjamin Button. Il tourne dans de nombreux autres succès comme Entretien avec un vampire de Neil Jordan, Ocean\'s Eleven et ses suites de Steven Soderbergh, Troie de Wolfgang Petersen et Inglourious Basterds de Quentin Tarantino. Au cours de sa carrière, il reçoit six nominations aux Oscars et cinq nominations aux Golden Globes, dont un remporté pour L\'Armée des douze singes de Terry Gilliam en 1996. '),
 (6, 'Pratt', 'Christopher', '21 juin 1979', 'Dans un premier temps connu aux États-Unis grâce aux rôles qu\'il incarne à la télévision comme celui de Bright Abbott dans Everwood et d\'Andy Dwyer dans Parks and Recreation, il joue aussi des rôles secondaires au cinéma comme dans Wanted : Choisis ton destin, Le Stratège, Ten Years, Cinq ans de réflexion, Zero Dark Thirty et Her. Il prend par la suite part à plusieurs films comiques tels que Hot Babes et Delivery Man.'),
 (7, 'Sheridan', 'Tye', '11 novembre 1996', 'Tye Sheridan est né à Elkhart, une petite ville de l\'est du Texas, au nord de Houston. Fils aîné de Bryan et Stephanie Sheridan, il a également une sœur nommée Madison.\r\n\r\nIl fréquente le système scolaire indépendant d\'Elkhart depuis la maternelle, et, chaque année, a toujours obtenu de bons résultats. En plus de la réussite scolaire, il a pratiqué plusieurs sports tels que le baseball ou le football américain. '),
@@ -90,20 +90,30 @@ INSERT INTO `artistes` (`id`, `nom`, `prenom`, `naissance`, `biographie`) VALUES
 
 DROP TABLE IF EXISTS `artiste_role`;
 CREATE TABLE IF NOT EXISTS `artiste_role` (
-  `N°` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_role` int(11) NOT NULL,
   `id_artiste` int(11) NOT NULL,
-  PRIMARY KEY (`N°`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `artiste_role`
 --
 
-INSERT INTO `artiste_role` (`N°`, `id_role`, `id_artiste`) VALUES
+INSERT INTO `artiste_role` (`id`, `id_role`, `id_artiste`) VALUES
 (1, 2, 1),
 (2, 1, 2),
-(3, 2, 4);
+(4, 1, 4),
+(5, 1, 5),
+(6, 1, 6),
+(7, 1, 7),
+(8, 1, 8),
+(9, 2, 9),
+(10, 2, 10),
+(11, 2, 11),
+(12, 2, 12),
+(13, 2, 13),
+(14, 2, 14);
 
 -- --------------------------------------------------------
 
