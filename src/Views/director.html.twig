@@ -10,11 +10,21 @@
 		<ul>
 			<li>Né le :
 				{{director.naissance}}</li>
+			<li>A réalisé:
+				<ul>
+					{% for movie in movies %}
+						<li>
+							<a href="{{baseUrl}}/movie/{{movie.id}}">{{movie.titre}}</a>
+						</li>
+					{% endfor %}
+				</ul>
+			</li>
 		</ul>
 		<img class="avatar" src="{{baseUrl}}/assets/img/avatar.png" width="300px" alt="avatar">
 		<p>
 			{{director.biographie}}
 		</p>
+
 	{% else %}
 		<h1 class="mt-5">Ce réalisateur n'existe pas</h1>
 	{% endif %}

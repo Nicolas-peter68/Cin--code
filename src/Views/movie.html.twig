@@ -6,8 +6,9 @@
 	<h1 class="mt-5">{{movie.titre}}</h1>
 	<ul>
 		<li>Réalisé par:
+			<a href="{{baseUrl}}/director/{{movie.id_artiste}}">	
 			{{movie.prenom}}
-			{{movie.nom}}
+			{{movie.nom}}</a>
 		</li>
 		<li>Année:
 			{{movie.annee}}</li>

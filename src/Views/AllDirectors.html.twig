@@ -1,0 +1,14 @@
+{% extends "template.html.twig" %}
+
+{% block body %}
+	<h1 class="mt-5">Tous les Réalisateurs</h1>
+	<ul>
+		{% for director in directors %}
+			<li>
+				<a href="{{baseUrl}}/director/{{director.id}}">{{ director.prenom}}
+					{{director.nom}}
+				</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}
