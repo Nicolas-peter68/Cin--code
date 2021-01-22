@@ -10,18 +10,17 @@
 		<ul>
 			<li>Né le :
 				{{actor.naissance}}</li>
-			<li>
+			<li>A joué(e) dans :
 				<ul>
-					A joué(e) dans :
 					{% for movie in movies %}
 						<li>
 							<a href="{{baseUrl}}/movie/{{movie.id}}">{{movie.titre}}
 							</a>
 						</li>
 					{% endfor %}
-				</li>
+				</ul>
 			</li>
-		</ul>
+		</li>
 	</ul>
 	<img class="avatar" src="{{baseUrl}}/assets/img/avatar.png" width="300px" alt="avatar">
 	<p>
