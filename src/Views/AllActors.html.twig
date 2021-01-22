@@ -5,11 +5,10 @@
 	<ul>
 		{% for actor in actors %}
 			<li>
-				<a href="{{baseUrl}}/actor/{{actor.id}}">{{ actor.prenom}}
+				<a href="{{baseUrl}}/actor/{{actor.id}}">{{actor.prenom}}
 					{{actor.nom}}
 				</a>
 			</li>
 		{% endfor %}
-        {{dump(actors)}}
 	</ul>
 {% endblock %}

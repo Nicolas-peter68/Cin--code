@@ -1,21 +1,32 @@
 {% extends "template.html.twig" %}
 {% block title %}
-	{{actors.prenom}}
-	{{actors.nom}}
+	{{actor.prenom}}
+	{{actor.nom}}
 {% endblock %}
 {% block body %}
-	{% if actors.id %}
-		<h1 class="mt-5">{{actors.prenom}}
-			{{actors.nom}}</h1>
+	{% if actor.id %}
+		<h1 class="mt-5">{{actor.prenom}}
+			{{actor.nom}}</h1>
 		<ul>
 			<li>Né le :
-				{{actors.naissance}}</li>
+				{{actor.naissance}}</li>
+			<li>
+				<ul>
+					A joué(e) dans :
+					{% for movie in movies %}
+						<li>
+							<a href="{{baseUrl}}/movie/{{movie.id}}">{{movie.titre}}
+							</a>
+						</li>
+					{% endfor %}
+				</li>
+			</li>
 		</ul>
-		<img class="avatar" src="{{baseUrl}}/assets/img/avatar.png" width="300px" alt="avatar">
-		<p>
-			{{actors.biographie}}
-		</p>
-	{% else %}
-		<h1 class="mt-5">Cet acteur n'existe pas</h1>
-	{% endif %}
-{% endblock %}
+	</ul>
+	<img class="avatar" src="{{baseUrl}}/assets/img/avatar.png" width="300px" alt="avatar">
+	<p>
+		{{actor.biographie}}
+	</p>
+{% else %}
+	<h1 class="mt-5">Cet acteur n'existe pas</h1>
+{% endif %}{% endblock %}

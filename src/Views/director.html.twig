@@ -15,6 +15,9 @@
 		<p>
 			{{director.biographie}}
 		</p>
+		{% for movie in movies %}
+			<li><a href="{{baseUrl}}/movie/{{movie.id}}">{{movie.titre}}</a></li>
+		{% endfor %}
 	{% else %}
 		<h1 class="mt-5">Ce réalisateur n'existe pas</h1>
 	{% endif %}
